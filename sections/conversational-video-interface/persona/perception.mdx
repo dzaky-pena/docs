@@ -1,0 +1,162 @@
+---
+title: Perception
+sidebarTitle: Perception
+description: Learn how to configure the perception layer with Raven to enable the real-time visual understanding.
+---
+
+The **Perception Layer** in Tavus enhances an AI agent with real-time visual understanding.
+By using <a href="/sections/models#raven%3A-perception-model" target="_blank" rel="noopener noreferrer"><strong>Raven</strong></a>, the AI agent becomes more context-aware, responsive, and capable of triggering actions based on visual input.
+
+## Configuring the Perception Layer
+To configure the Perception Layer, define the following parameters within the `layers.perception` object:
+### 1. `perception_model`
+Specifies the perception model to use.
+- **Options**:
+  - `raven-0` (default and recommended): Advanced visual capabilities, including screen share support, ambient queries, and perception tools.
+  - `basic`: Legacy model with limited features.
+  - `off`: Disables the perception layer.
+<Note>
+**Screen Share Feature**:When using `raven-0`, screen share feature is enabled by default without additional configuration.
+</Note>
+
+```json
+"layers": {
+  "perception": {
+    "perception_model": "raven-0"
+  }
+}
+```
+
+### 2. `ambient_awareness_queries`
+An array of custom queries that `raven-0` continuously monitors in the visual stream.
+
+```json
+"ambient_awareness_queries": [
+  "Is the user wearing a bright outfit?"
+]
+```
+
+### 3. `perception_analysis_queries`
+An array of custom queries that `raven-0` processes at the end of the call to generate a visual analysis summary for the user.
+```json
+"perception_analysis_queries": [
+  "Is the user wearing multiple bright colors?",
+  "Is there any indication that more than one person is present?"
+]
+```
+
+<Tip>
+Best practices for `ambient_awareness_queries` and `perception_analysis_queries`:
+- Use simple, focused prompts.
+- Use queries that support your persona’s purpose.
+</Tip>
+
+### 4. `perception_tool_prompt`
+
+Tell `raven-0` when and how to trigger tools based on what it sees.
+```json
+"perception_tool_prompt":
+  "You have a tool to notify the system when a bright outfit is detected, named `notify_if_bright_outfit_shown`. You MUST use this tool when a bright outfit is detected."
+```
+
+### 5. `perception_tools`
+Defines callable functions that `raven-0` can trigger upon detecting specific visual conditions. Each tool must include a `type` and a `function` object detailing its schema.
+
+```json
+"perception_tools": [
+  {
+    "type": "function",
+    "function": {
+      "name": "notify_if_bright_outfit_shown",
+      "description": "Use this function when a bright outfit is detected in the image with high confidence",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "outfit_color": {
+            "type": "string",
+            "description": "Best guess on what color of outfit it is"
+          }
+        },
+        "required": ["outfit_color"]
+      }
+    }
+  }
+]
+```
+
+<Note>
+Please see <a href="/sections/conversational-video-interface/persona/perception-tool" target="_blank" rel="noopener noreferrer">Tool Calling</a> for more details.
+</Note>
+
+## Example Configuration
+This example demonstrates a persona designed to identify when a user wears a bright outfit and triggers an internal action accordingly.
+
+```json
+{
+  "persona_name": "Fashion Advisor",
+  "system_prompt": "As a Fashion Advisor, you specialize in offering tailored fashion advice.",
+  "pipeline_mode": "full",
+  "context": "You're having a video conversation with a client about their outfit.",
+  "default_replica_id": "r79e1c033f",
+  "layers": {
+    "perception": {
+      "perception_model": "raven-0",
+      "ambient_awareness_queries": [
+        "Is the user wearing a bright outfit?"
+      ],
+      "perception_analysis_queries": [
+        "Is there any indication that more than one person is present?",
+        "On a scale of 1-100, how often was the user looking at the screen?"
+      ],
+      "perception_tool_prompt": "You have a tool to notify the system when a bright outfit is detected, named `notify_if_bright_outfit_shown`. You MUST use this tool when a bright outfit is detected.",
+      "perception_tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "notify_if_bright_outfit_shown",
+            "description": "Use this function when a bright outfit is detected in the image with high confidence",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "outfit_color": {
+                  "type": "string",
+                  "description": "Best guess on what color of outfit it is"
+                }
+              },
+              "required": ["outfit_color"]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+<Note>
+Please see the <a href="/api-reference/personas/create-persona" target='_blank'>Create a Persona</a> endpoint for more details.
+</Note>
+
+## End-of-call Perception Analysis
+
+`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and will be sent as <a href="https://docs.tavus.io/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event to the <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target="_blank">conversation callback</a> (if specified)
+
+<Note>
+This feature is exclusive to personas with `raven-0` specified in the Perception Layer.
+</Note>
+
+Your backend will receive the visual summary once it's processed. For [Example Persona](#example-configuration) will produce this visual summary
+
+```json application.perception_analysis
+{
+  "properties": {
+    "analysis": "Here's a summary of the visual observations:\n\n*   **Presence of Others:** There is no indication that more than one person is present in the video call. All observations consistently describe a single male subject, and one explicitly states, \"There are no other people or pets visible.\"\n*   **User Gaze at Screen:** The user was predominantly not looking at the screen. Their eyes were frequently described as closed, half-closed, or looking downwards, indicating a state of introspection, contemplation, or rest. While there were brief moments where their eyes were noted to be open or looking directly at the camera (particularly towards the end of the observed period), these appear to be exceptions to a sustained period of inward focus. On a scale of 1-100, the user was looking at the screen approximately **20%** of the time."
+  },
+  "conversation_id": "<your_conversation_id>",
+  "webhook_url": "<your_webhook_url>",
+  "event_type": "application.perception_analysis",
+  "message_type": "application",
+  "timestamp": "2025-07-11T02:54:13.717509Z"
+}
+```
+
+It can analyze the user camera, like detecting the presence of others. It can also score a parameter like "how often the user look at the screen" in a scale of 1-100.

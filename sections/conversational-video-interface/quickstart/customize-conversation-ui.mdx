@@ -1,0 +1,84 @@
+---
+title: Customize Conversation UI
+description: Experience a conversation in a custom Daily UI — styled to match your preference.
+---
+
+You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a> and <a href="https://docs.daily.co/reference/daily-js/daily-call-client/properties" target='_blank'>Daily Call Properties</a>. 
+
+Here’s an example showing how to customize the conversation UI by adding leave and fullscreen buttons, changing the language, and adjusting the UI color.
+
+### Customization Example Guide
+
+<Steps>
+<Step title="Step 1: Get an API Key">
+1. Go to the <a href="https://platform.tavus.io/" target='_blank'>Tavus platform</a> and select **API Key** from the sidebar menu.
+2. Click **Create New Key** to begin generating your API key.
+3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
+4. Copy your newly created API key and store it securely.
+<Warning>
+We cannot recover your API Key if you lose it.
+</Warning>
+</Step>
+<Step title="Step 2: Create a Conversation">
+<Note>
+In this example, we will use stock replica ID **_rfe12d8b9597_** (Nathan) and stock persona ID **_pdced222244b_** (Sales Coach).
+</Note>
+Use the following request body example:
+```sh
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "replica_id": "rfe12d8b9597",
+  "persona_id": "pdced222244b"
+}'
+```
+<Note>
+Replace `<your_api_key>` with your actual API key.
+</Note>
+</Step>
+<Step title="Step 3: Customize the Conversation UI">
+1. Make a new `index.html` file
+
+2. Paste following code into the file, replace `DAILY_ROOM_URL` in the code with your own room URL from step above
+
+```html {6-8,16-22}
+<html>
+  <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+  <body>
+    <script>
+      call = window.Daily.createFrame({
+        showLeaveButton: true,       // Leave button on bottom right
+        lang: "jp",                  // Language set to Japanese
+        showFullscreenButton: true,  // Fullscreen button on top left
+        iframeStyle: {
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+        },
+        theme: {
+          colors: {
+            accent: "#2F80ED",      // primary button and accent color
+            background: "#F8F9FA",  // main background color
+            baseText: "#1A1A1A",    // text color
+          },
+        },
+      });
+      call.join({ url: 'DAILY_ROOM_URL' });
+    </script>
+  </body>
+</html>
+```
+</Step>
+<Step title="Run the Application">
+Start the application by opening the file in the browser.
+
+<Frame>
+  ![](/images/customui.png)
+</Frame>
+
+</Step>
+</Steps>

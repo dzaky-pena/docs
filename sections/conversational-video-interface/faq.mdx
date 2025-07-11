@@ -1,0 +1,292 @@
+---
+title: FAQ
+description: Frequently asked questions about Tavus’s Conversational Video Interface
+---
+
+<AccordionGroup>
+<Accordion title="What is Daily?">
+**Daily** is a platform that offers prebuilt video call apps and APIs, allowing you to easily integrate video chat into your web applications. You can embed a customizable video call widget into your site with just a few lines of code and access features like screen sharing and recording. **Tavus partners with Daily to power video conversations with our replicas.**
+</Accordion>
+<Accordion title="Do I need a Daily account?">
+* You **do not** need to sign up for a Daily account to use Tavus’s Conversational Video Interface.
+* All you need is the Daily room URL (called `conversation_url` in our system) that is returned by the Tavus API. You can serve this link directly to your end users or embed it.
+</Accordion>
+<Accordion title="How do I embed the conversation using Daily’s Prebuilt UI?">
+You can use Daily Prebuilt if you want a full-featured call UI and JavaScript control over the conversation. Once you have the Daily room URL (`conversation_url`) ready, replace `DAILY_ROOM_URL` in the code snippet below with your room URL.
+```html
+<html>
+  <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+  <body>
+    <script>
+      call = window.Daily.createFrame();
+      call.join({ url: 'DAILY_ROOM_URL' });
+    </script>
+  </body>
+</html>
+```
+That’s it! For more details and options for embedding, check out <a href="https://docs.daily.co/guides/products/prebuilt#step-by-step-guide-embed-daily-prebuilt" target="_blank">Daily’s documentation.</a> or <a href="/sections/integrations/embedding-cvi" target='_blank'>our implementation guides</a>.
+</Accordion>
+<Accordion title="How do I embed the conversation using an iframe?">
+You can use an iframe if you just want to embed the conversation video with minimal setup. Once you have the Daily room URL (`conversation_url`) ready, replace `YOUR_TAVUS_MEETING_URL` in the iframe code snippet below with your room URL.
+```html
+<html>
+  <body>
+    <iframe
+      src="YOUR_TAVUS_MEETING_URL"
+      allow="camera; microphone; fullscreen; display-capture"
+      style="width: 100%; height: 500px; border: none;">
+    </iframe>
+  </body>
+</html>
+```
+That’s it! For more details and options for embedding, check out <a href="https://docs.daily.co/guides/products/prebuilt#step-by-step-guide-embed-daily-prebuilt" target="_blank">Daily’s documentation.</a> or <a href="/sections/integrations/embedding-cvi" target='_blank'>our implementation guides</a>.
+</Accordion>
+<Accordion title="How can I add custom LLM layers?">
+To add a custom LLM layer, you’ll need the model name, base URL, and API key from your LLM provider. Then, include the LLM config in your `layers` field when creating a persona using the <a href='/api-reference/personas/create-persona' target='_blank'>Create Persona API</a>. Example configuration:
+
+```json {8-13}
+{
+  "persona_name": "Storyteller",
+  "system_prompt": "You are a storyteller who entertains people of all ages.",
+  "context": "Your favorite stories include Little Red Riding Hood and The Three Little Pigs.",
+  "pipeline_mode": "full",
+  "default_replica_id": "r665388ec672",
+  "layers": {
+    "llm": {
+      "model": "gpt-3.5-turbo",
+      "base_url": "https://api.openai.com/v1",
+      "api_key": "your-api-key",
+      "speculative_inference": true
+    }
+  }
+}
+```
+For more details, refer to our <a href="/sections/conversational-video-interface/persona/llm#custom-llms" target='_blank'>Large Language Model (LLM) documentation</a>.
+</Accordion>
+<Accordion title="How do I modify TTS voices?">
+You can integrate with third-party TTS providers by configuring the tts object in your persona. Supported engines include:
+* Cartesia
+* ElevenLabs
+* PlayHT
+
+Example configuration:
+```json
+{
+  "layers": {
+    "tts": {
+      "api_key": "your-tts-provider-api-key",
+      "tts_engine": "cartesia",
+      "external_voice_id": "your-voice-id",
+      "voice_settings": {
+        "speed": "normal",
+        "emotion": ["positivity:high", "curiosity"]
+      },
+      "tts_emotion_control": true,
+      "tts_model_name": "sonic",
+      "playht_user_id": "your-playht-user-id"
+    }
+  }
+}
+```
+
+For more details, read more on [our TTS documentation](/sections/conversational-video-interface/persona/tts).
+</Accordion> 
+<Accordion title="How do I add call-back URLs?">
+You need to create a webhook endpoint that can receive POST requests from Tavus. This endpoint will receive the callback events for the visual summary after the conversation ended. Then, add `callback_url` property when creating the conversation
+  
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "p596401c2cf9",
+  "replica_id": "rf4703150052",
+  "callback_url": "your_webhook_url"
+}'
+``` 
+</Accordion>
+<Accordion title="How do I get transcripts for my conversation?">
+You need to create a webhook endpoint that can receive `POST` requests from Tavus. This endpoint will receive the callback events for the transcripts after the conversation ended. Then, add `callback_url` property when creating the conversation.
+
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "p596401c2cf9",
+  "replica_id": "rf4703150052",
+  "callback_url": "your_webhook_url"
+}'
+```
+
+Your backend then will receive an event with properties `event_type = application.transcription_ready` when the transcript is ready.
+
+```json application.transcription_ready [expandable]
+{
+  "properties": {
+    "replica_id": "<replica_id>",
+    "transcript": [
+      {
+        "role": "system",
+        "content": "You are in a live video conference call with a user. You will get user message with two identifiers, 'USER SPEECH:' and 'VISUAL SCENE:', where 'USER SPEECH:' is what the person actually tells you, and 'VISUAL SCENE:' is what you are seeing when you look at them. Only use the information provided in 'VISUAL SCENE:' if the user asks what you see. Don't output identifiers such as 'USER SPEECH:' or 'VISUAL SCENE:' in your response. Reply in short sentences, talk to the user in a casual way.Respond only in english.   "
+      },
+      {
+        "role": "user",
+        "content": " Hello, tell me a story. "
+      },
+      {
+        "role": "assistant",
+        "content": "I've got a great one about a guy who traveled back in time.  Want to hear it? "
+      },
+      {
+        "role": "user",
+        "content": "USER_SPEECH:  Yeah I'd love to hear it.  VISUAL_SCENE: The image shows a close-up of a person's face, focusing on their forehead, eyes, and nose. In the background, there is a television screen mounted on a wall. The setting appears to be indoors, possibly in a public or commercial space."
+      },
+      {
+        "role": "assistant",
+        "content": "Let me think for a sec.  Alright, so there was this mysterious island that appeared out of nowhere,  and people started disappearing when they went to explore it.  "
+      },
+    ]
+  },
+  "conversation_id": "<your_conversation_id>",
+  "webhook_url": "<your_webhook_url>",
+  "message_type": "application",
+  "event_type": "application.transcription_ready",
+  "timestamp": "2025-02-10T21:30:06.141454Z"
+}
+```
+</Accordion>
+<Accordion title="How do I get visual summary for my conversation?">
+You need to create a webhook endpoint that can receive `POST` requests from Tavus. This endpoint will receive the callback events for the visual summary after the conversation ended. Then, add `callback_url` property when creating the conversation.
+
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "p596401c2cf9",
+  "replica_id": "rf4703150052",
+  "callback_url": "your_webhook_url"
+}'
+```
+
+Your backend then will receive an event with properties `event_type = application.perception_analysis` when the summary is ready.
+
+```json application.perception_analysis
+{
+  "properties": {
+    "analysis": "Here's a summary of the visual observations from the video call:\n\n*   **Overall Demeanor & Emotional State:** The user consistently appeared calm, collected, and neutral. They were frequently described as pensive, contemplative, or focused, suggesting they were often engaged in thought or listening attentively. No strong positive or negative emotions were consistently detected.\n\n*   **Appearance:**\n    *   The user is a young Asian male, likely in his early 20s, with dark hair.\n    *   He consistently wore a black shirt, sometimes specifically identified as a black t-shirt. One observation mentioned a \"1989\" print on the shirt.\n    *   He was consistently looking directly at the camera.\n\n*   **Environment:** The user was consistently in an indoor setting, most likely an office or home. Common background elements included:\n    *   White walls.\n    *   Windows or glass panels/partitions, often with black frames.\n    *   Another person was partially visible in the background for several observations.\n\n*   **Actions:**\n    *   The user was seen talking and gesturing with his hand in one observation, indicating he was actively participating in a conversation.\n\n*   **Ambient Awareness Queries:**\n    *   **Acne:** Acne was initially detected on the user's face in one observation, but later observations did not detect it. This suggests that acne may have been visible at one point but not throughout the entire call.\n    *   **Distress/Discomfort:** No signs of distress or discomfort were observed at any point during the call."
+  },
+  "conversation_id": "<your_conversation_id>",
+  "webhook_url": "<your_webhook_url>",
+  "message_type": "application",
+  "event_type": "application.perception_analysis",
+  "timestamp": "2025-06-19T06:57:32.480826Z"
+}
+```
+</Accordion>
+<Accordion title="What LLM (Large Language Model) does Tavus use to power the conversational replicas?">
+Tavus offers flexibility in choosing the LLM (Large Language Model) to power your conversational replicas. You can either use one of Tavus’s own models or bring your own!
+
+* **No LLM Layer:** If you don’t include an LLM layer, Tavus will automatically default to a Tavus-provided model.
+* **Tavus-Provided LLMs:** You can choose between three different models:
+    * **tavus-gpt-4o:** The smartest option for complex interactions.
+    * **tavus-gpt-4o-mini:** A hybrid model that balances performance and intelligence.
+    * **tavus-llama:** The **default** choice if no LLM layer is provided. This is the fastest model, offering the best user-to-user (U2U) experience. It’s on-premise, making it incredibly performant.
+
+This allows you to tailor the conversational experience to your specific needs, whether you prioritize speed, intelligence, or a balance of both.
+</Accordion>
+<Accordion title="What is the maximum context window supported by the default LLM?">
+* The default LLM, `tavus-llama`, has a **limit of 120,000 tokens**.
+* Contexts over **100,000 tokens** will experience noticeable performance degradation (slower response times).
+<Tip>
+1 token ≈ 4 characters; therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).
+</Tip>
+</Accordion>
+<Accordion title="What are some recording tips for producing high quality conversational replica training footage?">
+When recording footage for training conversational replicas, here are some key tips to ensure high quality:
+
+1. **Minimal Head Movement:** Aim to keep your head and body as still as possible during the recording. This helps in maintaining consistency and improves the overall quality of the training data.
+2. **Pause and Be Still:** It’s recommended to stop, stay still, and remain silent for at least 5 seconds at regular intervals throughout the script. These pauses are crucial for helping the replica appear natural during moments of silence in a conversation.
+3. **Use a Laptop Camera:** Recording on a laptop camera, as if you were on a Zoom call, often yields the most natural results. This setup mimics a familiar conversational setting, enhancing the naturalness of the footage.
+</Accordion>
+<Accordion title="How do I add perception tool calls?">
+  You can configure perception tools in the `layers.perception` object when creating a persona:
+
+  ```json [expandable]
+  {
+    "layers": {
+      "perception": {
+        "perception_model": "raven-0",
+        "ambient_awareness_queries": [
+          "Is the user showing an ID card?",
+          "Is the user wearing a mask?"
+        ],
+        "perception_tool_prompt": "You have a tool to notify the system when an ID card is detected, named `notify_if_id_shown`. You MUST use this tool when a bright outfit is detected.",
+        "perception_tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "notify_if_id_shown",
+              "description": "Use this function when a drivers license or passport is detected in the image with high confidence",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "id_type": {
+                    "type": "string",
+                    "description": "best guess on what type of ID it is"
+                  }
+                },
+                "required": ["id_type"]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+  ```
+
+  Or modify perception tools using the [Update Persona API](/api-reference/personas/patch-persona):
+
+  ```sh [expandable]
+  curl --request PATCH \
+    --url https://tavusapi.com/v2/personas/{persona_id} \
+    --header 'Content-Type: application/json' \
+    --header 'x-api-key: <api-key>' \
+    --data '[
+      {
+        "op": "replace",
+        "path": "/layers/perception/perception_tools",
+        "value": [
+          {
+            "type": "function",
+            "function": {
+              "name": "detect_glasses",
+              "description": "Trigger this function if the user is wearing glasses",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "glasses_type": {
+                    "type": "string",
+                    "description": "Type of glasses (e.g., reading, sunglasses)"
+                  }
+                },
+                "required": ["glasses_type"]
+              }
+            }
+          }
+        ]
+      }
+    ]'
+  ```
+
+  Read more on this [page](/sections/conversational-video-interface/persona/perception)
+</Accordion>
+<Accordion title="Do I need to invite the replica to the meeting room?">
+No, it will automatically join as soon as it’s ready!
+</Accordion>
+</AccordionGroup>

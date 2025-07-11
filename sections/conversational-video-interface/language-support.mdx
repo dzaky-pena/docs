@@ -1,0 +1,63 @@
+---
+title: Language Support
+description: Customize the conversation language using full language names supported by Tavus TTS engines.
+---
+
+Tavus supports a wide range of languages for spoken interaction, powered by third-party text-to-speech (TTS) engines. The available languages depend on the TTS engine selected for the conversation.
+
+## Supported Languages
+Below is the list of supported languages for each supported third-party TTS engine:
+<CardGroup cols={3}>
+  <Card title="Cartesia (default)" icon="c" href="https://docs.cartesia.ai/2024-11-13/build-with-cartesia/models/tts#language-support" cta="View supported languages"/>
+
+  <Card title="ElevenLabs" icon="tally-2" href="https://elevenlabs.io/docs/capabilities/text-to-speech#supported-languages" cta="View supported languages"/>
+
+  <Card title="PlayHT" icon="headset" href="https://docs.play.ai/api-reference/text-to-speech/endpoints/v1/list-voices#response-language" cta="View supported languages"/>
+</CardGroup>
+
+
+<Note>  
+By default, Tavus uses the **Cartesia** TTS engine.
+</Note>
+## Setting the Conversation Language
+
+To specify a language, use the `language` parameter in the <a href="/api-reference/conversations/create-conversation" target="_blank" rel="noopener noreferrer">Create Conversation</a>. **You must use the full language name**, not a language code.
+
+```shell cURL {9}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "pdced222244b",
+  "replica_id": "rfe12d8b9597",
+  "properties": {
+    "language": "spanish"
+   }
+}'
+```
+
+<Note>
+Language names must match exactly with those supported by the selected TTS engine.
+</Note>
+
+### Multilingual Mode
+
+To automatically detect the participant’s spoken language at the start of the conversation, set:
+
+```shell cURL {9}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "pdced222244b",
+  "replica_id": "rfe12d8b9597",
+  "properties": {
+    "language": "multilingual"
+   }
+}'
+```
+
+This enables ASR (Automatic Speech Recognition) to detect and lock in the spoken language for the duration of the conversation.
+
