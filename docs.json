@@ -105,49 +105,49 @@
           {
             "group": "Blockchain Indexer API",
             "openapi": {
-              "source": "/bitcoin/blockchain-indexer-api/openapi.json",
+              "source": "/bitcoin/blockchain-indexer-api/bitcoin-blockchain.json",
               "directory": "bitcoin/blockchain-indexer-api"
             }
           },
           {
             "group": "Esplora API",
             "openapi": {
-              "source": "/bitcoin/esplora-api/openapi.json",
+              "source": "/bitcoin/esplora-api/bitcoin-esplora.json",
               "directory": "bitcoin/esplora-api"
             }
           },
           {
             "group": "Node RPC API",
             "openapi": {
-              "source": "/bitcoin/node-rpc-api/openapi.json",
+              "source": "/bitcoin/node-rpc-api/bitcoin-node.json",
               "directory": "bitcoin/node-rpc-api"
             }
           },
           {
             "group": "Mempool Monitoring API",
             "openapi": {
-              "source": "/bitcoin/mempool-monitoring-api/openapi.json",
+              "source": "/bitcoin/mempool-monitoring-api/bitcoin-mempool.json",
               "directory": "bitcoin/mempool-monitoring-api"
             }
           },
           {
             "group": "Event Manager API",
             "openapi": {
-              "source": "/bitcoin/event-manager-api/openapi.json",
+              "source": "/bitcoin/event-manager-api/bitcoin-event.json",
               "directory": "bitcoin/event-manager-api"
             }
           },
           {
             "group": "Market Price API",
             "openapi": {
-              "source": "/bitcoin/market-price-api/openapi.json",
+              "source": "/bitcoin/market-price-api/bitcoin-market.json",
               "directory": "bitcoin/market-price-api"
             }
           },
           {
             "group": "Wallet API",
             "openapi": {
-              "source": "/bitcoin/wallet-api/openapi.json",
+              "source": "/bitcoin/wallet-api/bitcoin-wallet.json",
               "directory": "bitcoin/wallet-api"
             }
           },
@@ -176,28 +176,28 @@
           {
             "group": "Blockchain Indexer API",
             "openapi": {
-              "source": "/cardano/blockchain-indexer-api/openapi.json",
+              "source": "/cardano/blockchain-indexer-api/cardano-blockchain.json",
               "directory": "cardano/blockchain-indexer-api"
             }
           },
           {
             "group": "Transaction Manager API",
             "openapi": {
-              "source": "/cardano/transaction-manager-api/openapi.json",
+              "source": "/cardano/transaction-manager-api/cardano-transaction.json",
               "directory": "cardano/transaction-manager-api"
             }
           },
           {
             "group": "Managed Contracts API",
             "openapi": {
-              "source": "/cardano/managed-contracts-api/openapi.json",
+              "source": "/cardano/managed-contracts-api/cardano-managed.json",
               "directory": "cardano/managed-contracts-api"
             }
           },
           {
             "group": "Market Price API",
             "openapi": {
-              "source": "/cardano/market-price-api/openapi.json",
+              "source": "/cardano/market-price-api/cardano-market.json",
               "directory": "cardano/market-price-api"
             }
           },
@@ -225,14 +225,14 @@
           {
             "group": "Blockchain Indexer API",
             "openapi": {
-              "source": "/dogecoin/blockchain-indexer-api/openapi.json",
+              "source": "/dogecoin/blockchain-indexer-api/dogecoin-blockchain.json",
               "directory": "dogecoin/blockchain-indexer-api"
             }
           },
           {
             "group": "Node RPC API",
             "openapi": {
-              "source": "/dogecoin/node-rpc-api/openapi.json",
+              "source": "/dogecoin/node-rpc-api/dogecoin-node.json",
               "directory": "dogecoin/node-rpc-api"
             }
           },
@@ -252,7 +252,7 @@
           {
             "group": "Node RPC API",
             "openapi": {
-              "source": "/arch-network/node-rpc-api/openapi.json",
+              "source": "/arch-network/node-rpc-api/arch-node.json",
               "directory": "arch-network/node-rpc-api"
             }
           },
