@@ -175,222 +175,31 @@
           "cardano/api-usage",
           {
             "group": "Blockchain Indexer API",
-            "pages": [
-              "cardano/blockchain-indexer-api/overview",
-              {
-                "group": "Accounts",
-                "pages": [
-                  "cardano/blockchain-indexer-api/accounts/stake-account-information",
-                  "cardano/blockchain-indexer-api/accounts/stake-account-addresses",
-                  "cardano/blockchain-indexer-api/accounts/stake-account-assets",
-                  "cardano/blockchain-indexer-api/accounts/stake-account-delegation-history",
-                  "cardano/blockchain-indexer-api/accounts/stake-account-history",
-                  "cardano/blockchain-indexer-api/accounts/stake-account-rewards",
-                  "cardano/blockchain-indexer-api/accounts/stake-account-updates"
-                ]
-              },
-              {
-                "group": "Addresses",
-                "pages": [
-                  "cardano/blockchain-indexer-api/addresses/transactions-by-multiple-payment-credentials",
-                  "cardano/blockchain-indexer-api/addresses/utxos-by-multiple-payment-credentials",
-                  "cardano/blockchain-indexer-api/addresses/balance-by-payment-credential",
-                  "cardano/blockchain-indexer-api/addresses/payment-credential-transactions",
-                  "cardano/blockchain-indexer-api/addresses/utxos-by-payment-credential",
-                  "cardano/blockchain-indexer-api/addresses/utxos-by-multiple-addresses",
-                  "cardano/blockchain-indexer-api/addresses/decode-address",
-                  "cardano/blockchain-indexer-api/addresses/address-transactions",
-                  "cardano/blockchain-indexer-api/addresses/address-transaction-count",
-                  "cardano/blockchain-indexer-api/addresses/utxo-references-at-an-address",
-                  "cardano/blockchain-indexer-api/addresses/utxos-at-an-address"
-                ]
-              },
-              {
-                "group": "Assets",
-                "pages": [
-                  "cardano/blockchain-indexer-api/assets/native-asset-information",
-                  "cardano/blockchain-indexer-api/assets/accounts-of-addresses-holding-specific-asset",
-                  "cardano/blockchain-indexer-api/assets/native-asset-addresses",
-                  "cardano/blockchain-indexer-api/assets/native-asset-mints-and-burns",
-                  "cardano/blockchain-indexer-api/assets/native-asset-transactions",
-                  "cardano/blockchain-indexer-api/assets/native-asset-utxos"
-                ]
-              },
-              {
-                "group": "Blocks",
-                "pages": [
-                  "cardano/blockchain-indexer-api/blocks/latest-block-information",
-                  "cardano/blockchain-indexer-api/blocks/block-information"
-                ]
-              },
-              {
-                "group": "General",
-                "pages": [
-                  "cardano/blockchain-indexer-api/general/chain-tip",
-                  "cardano/blockchain-indexer-api/general/era-summary",
-                  "cardano/blockchain-indexer-api/general/protocol-parameters",
-                  "cardano/blockchain-indexer-api/general/blockchain-system-start"
-                ]
-              },
-              {
-                "group": "Datums",
-                "pages": [
-                  "cardano/blockchain-indexer-api/datums/datums-by-hashes",
-                  "cardano/blockchain-indexer-api/datums/datum-by-datum-hash"
-                ]
-              },
-              {
-                "group": "Ecosystem",
-                "pages": [
-                  "cardano/blockchain-indexer-api/ecosystem/resolve-ada-handle"
-                ]
-              },
-              {
-                "group": "Epochs",
-                "pages": [
-                  "cardano/blockchain-indexer-api/epochs/current-epoch-details",
-                  "cardano/blockchain-indexer-api/epochs/specific-epoch-details"
-                ]
-              },
-              {
-                "group": "Asset Policy",
-                "pages": [
-                  "cardano/blockchain-indexer-api/asset-policy/information-about-a-policy-of-native-assets",
-                  "cardano/blockchain-indexer-api/asset-policy/accounts-of-addresses-holding-assets-of-specific-policy",
-                  "cardano/blockchain-indexer-api/asset-policy/addresses-holding-assets-of-specific-policy",
-                  "cardano/blockchain-indexer-api/asset-policy/list-assets-of-a-policy",
-                  "cardano/blockchain-indexer-api/asset-policy/transactions-minting-or-burning-assets-of-policy",
-                  "cardano/blockchain-indexer-api/asset-policy/transactions-involving-assets-of-policy",
-                  "cardano/blockchain-indexer-api/asset-policy/utxos-containing-assets-of-specific-policy"
-                ]
-              },
-              {
-                "group": "Pools",
-                "pages": [
-                  "cardano/blockchain-indexer-api/pools/list-registered-stake-pools",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-blocks",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-delegators",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-delegator-history",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-history",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-information",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-metadata",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-relays",
-                  "cardano/blockchain-indexer-api/pools/stake-pool-updates"
-                ]
-              },
-              {
-                "group": "Scripts",
-                "pages": [
-                  "cardano/blockchain-indexer-api/scripts/script-by-script-hash"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "cardano/blockchain-indexer-api/transactions/evaluate-redeemers-of-a-transaction",
-                  "cardano/blockchain-indexer-api/transactions/transaction-outputs-by-output-references",
-                  "cardano/blockchain-indexer-api/transactions/transaction-details",
-                  "cardano/blockchain-indexer-api/transactions/cbor-bytes-of-a-transaction",
-                  "cardano/blockchain-indexer-api/transactions/address-by-transaction-output-reference",
-                  "cardano/blockchain-indexer-api/transactions/transaction-output-by-output-reference"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "cardano/blockchain-indexer-api/openapi.json",
+              "directory": "cardano/blockchain-indexer-api"
+            }
           },
           {
             "group": "Transaction Manager API",
-            "pages": [
-              "cardano/transaction-manager-api/overview",
-              {
-                "group": "Transactions",
-                "pages": [
-                  "cardano/transaction-manager-api/transactions/submit-a-transaction",
-                  "cardano/transaction-manager-api/transactions/get-transaction-state",
-                  "cardano/transaction-manager-api/transactions/transaction-history"
-                ]
-              },
-              {
-                "group": "Transaction Manager",
-                "pages": [
-                  "cardano/transaction-manager-api/transaction-manager/turbo-submit-transaction"
-                ]
-              },
-              {
-                "group": "Webhooks",
-                "pages": [
-                  "cardano/transaction-manager-api/webhooks/create-a-webhook"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "cardano/transaction-manager-api/openapi.json",
+              "directory": "cardano/transaction-manager-api"
+            }
           },
           {
             "group": "Managed Contracts API",
-            "pages": [
-              "cardano/managed-contracts-api/overview",
-              {
-                "group": "Vesting",
-                "pages": [
-                  "cardano/managed-contracts-api/vesting/lock-assets",
-                  "cardano/managed-contracts-api/vesting/collect-assets",
-                  "cardano/managed-contracts-api/vesting/state-of-vesting-assets"
-                ]
-              },
-              {
-                "group": "Direct Swap",
-                "pages": [
-                  "cardano/managed-contracts-api/direct-swap/create-an-offer",
-                  "cardano/managed-contracts-api/direct-swap/cancel-an-offer",
-                  "cardano/managed-contracts-api/direct-swap/get-all-offers",
-                  "cardano/managed-contracts-api/direct-swap/get-users-offers",
-                  "cardano/managed-contracts-api/direct-swap/fill-an-offer"
-                ]
-              },
-              {
-                "group": "Single Asset Staking",
-                "pages": [
-                  "cardano/managed-contracts-api/single-asset-staking/admin--create-the-config-for-a-new-campaign",
-                  "cardano/managed-contracts-api/single-asset-staking/admin--initialize-the-staking-for-a-new-campaign",
-                  "cardano/managed-contracts-api/single-asset-staking/user--staking-token-to-a-campaign",
-                  "cardano/managed-contracts-api/single-asset-staking/user--updating-stake-on-a-campaign",
-                  "cardano/managed-contracts-api/single-asset-staking/user--withdrawing-stake-from-a-campaign",
-                  "cardano/managed-contracts-api/single-asset-staking/admin--process-rewards-for-a-campaign",
-                  "cardano/managed-contracts-api/single-asset-staking/get-the-state-of-a-campaign"
-                ]
-              },
-              {
-                "group": "Subscription",
-                "pages": [
-                  "cardano/managed-contracts-api/subscription/create-a-subscription-service",
-                  "cardano/managed-contracts-api/subscription/create-a-user-account",
-                  "cardano/managed-contracts-api/subscription/initiate-a-subscription",
-                  "cardano/managed-contracts-api/subscription/unsubscribe",
-                  "cardano/managed-contracts-api/subscription/withdraw-subscription-fees"
-                ]
-              },
-              {
-                "group": "Multisig",
-                "pages": [
-                  "cardano/managed-contracts-api/multisig/initiate-a-multisig-contract",
-                  "cardano/managed-contracts-api/multisig/update-a-multisig-contract",
-                  "cardano/managed-contracts-api/multisig/end-a-multisig-contract"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "cardano/managed-contracts-api/openapi.json",
+              "directory": "cardano/managed-contracts-api"
+            }
           },
           {
             "group": "Market Price API",
-            "pages": [
-              "cardano/market-price-api/overview",
-              {
-                "group": "DEX",
-                "pages": [
-                  "cardano/market-price-api/dex/dexs",
-                  "cardano/market-price-api/dex/dex-and-pair-ohlc",
-                  "cardano/market-price-api/dex/dex-and-pair-trades",
-                  "cardano/market-price-api/dex/dex-pairs"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "cardano/market-price-api/openapi.json",
+              "directory": "cardano/market-price-api"
+            }
           },
           {
             "group": " ",
@@ -415,84 +224,17 @@
           "dogecoin/api-usage",
           {
             "group": "Blockchain Indexer API",
-            "pages": [
-              "dogecoin/blockchain-indexer-api/overview",
-              {
-                "group": "Addresses",
-                "pages": [
-                  "dogecoin/blockchain-indexer-api/addresses/total-balance-by-address",
-                  "dogecoin/blockchain-indexer-api/addresses/drc20-by-address",
-                  "dogecoin/blockchain-indexer-api/addresses/dunes-by-address",
-                  "dogecoin/blockchain-indexer-api/addresses/dune-utxos-by-address-and-dune",
-                  "dogecoin/blockchain-indexer-api/addresses/inscriptions-by-address",
-                  "dogecoin/blockchain-indexer-api/addresses/drc20-transfer-inscriptions-by-address",
-                  "dogecoin/blockchain-indexer-api/addresses/transactions-by-address",
-                  "dogecoin/blockchain-indexer-api/addresses/utxos-by-address"
-                ]
-              },
-              {
-                "group": "DRC20",
-                "pages": [
-                  "dogecoin/blockchain-indexer-api/drc20/list-drc20",
-                  "dogecoin/blockchain-indexer-api/drc20/drc20-info",
-                  "dogecoin/blockchain-indexer-api/drc20/drc20-holders"
-                ]
-              },
-              {
-                "group": "Dunes",
-                "pages": [
-                  "dogecoin/blockchain-indexer-api/dunes/list-dunes",
-                  "dogecoin/blockchain-indexer-api/dunes/dunes-info",
-                  "dogecoin/blockchain-indexer-api/dunes/holders-by-dune",
-                  "dogecoin/blockchain-indexer-api/dunes/utxos-by-dunes"
-                ]
-              },
-              {
-                "group": "Inscriptions",
-                "pages": [
-                  "dogecoin/blockchain-indexer-api/inscriptions/inscription-info",
-                  "dogecoin/blockchain-indexer-api/inscriptions/content-by-inscription-id"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "dogecoin/blockchain-indexer-api/openapi.json",
+              "directory": "dogecoin/blockchain-indexer-api"
+            }
           },
           {
             "group": "Node RPC API",
-            "pages": [
-              "dogecoin/node-rpc-api/overview",
-              {
-                "group": "Blocks",
-                "pages": [
-                  "dogecoin/node-rpc-api/blocks/latest-block",
-                  "dogecoin/node-rpc-api/blocks/block-range-info",
-                  "dogecoin/node-rpc-api/blocks/recent-block-info",
-                  "dogecoin/node-rpc-api/blocks/block-info"
-                ]
-              },
-              {
-                "group": "General",
-                "pages": [
-                  "dogecoin/node-rpc-api/general/blockchain-info"
-                ]
-              },
-              {
-                "group": "Mempool",
-                "pages": [
-                  "dogecoin/node-rpc-api/mempool/mempool-info",
-                  "dogecoin/node-rpc-api/mempool/mempool-transactions",
-                  "dogecoin/node-rpc-api/mempool/mempool-transaction-info",
-                  "dogecoin/node-rpc-api/mempool/mempool-transaction-ancestors",
-                  "dogecoin/node-rpc-api/mempool/mempool-transaction-descendants"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "dogecoin/node-rpc-api/transactions/send-transaction",
-                  "dogecoin/node-rpc-api/transactions/transaction-info"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "dogecoin/node-rpc-api/openapi.json",
+              "directory": "dogecoin/node-rpc-api"
+            }
           },
           {
             "group": " ",
@@ -509,49 +251,10 @@
           "arch-network/api-usage",
           {
             "group": "Node RPC API",
-            "pages": [
-              "arch-network/node-rpc-api/overview",
-              {
-                "group": "Accounts",
-                "pages": [
-                  "arch-network/node-rpc-api/accounts/account-address-hex-by-pubkey",
-                  "arch-network/node-rpc-api/accounts/account-info-by-pubkey",
-                  "arch-network/node-rpc-api/accounts/account-info-by-address-hex",
-                  "arch-network/node-rpc-api/accounts/account-info-hex-by-address-hex"
-                ]
-              },
-              {
-                "group": "Blocks",
-                "pages": [
-                  "arch-network/node-rpc-api/blocks/block-count",
-                  "arch-network/node-rpc-api/blocks/latest-block-info",
-                  "arch-network/node-rpc-api/blocks/latest-block-hash",
-                  "arch-network/node-rpc-api/blocks/block-range-info",
-                  "arch-network/node-rpc-api/blocks/recent-block-info",
-                  "arch-network/node-rpc-api/blocks/recent-block-info-count",
-                  "arch-network/node-rpc-api/blocks/block-info"
-                ]
-              },
-              {
-                "group": "Programs",
-                "pages": [
-                  "arch-network/node-rpc-api/programs/program-accounts"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "arch-network/node-rpc-api/transactions/recent-transactions",
-                  "arch-network/node-rpc-api/transactions/recent-transactions-hex",
-                  "arch-network/node-rpc-api/transactions/recent-transactions-count",
-                  "arch-network/node-rpc-api/transactions/recent-transactions-hex-1",
-                  "arch-network/node-rpc-api/transactions/send-transaction",
-                  "arch-network/node-rpc-api/transactions/send-multiple-transactions",
-                  "arch-network/node-rpc-api/transactions/processed-transaction-info-by-hash",
-                  "arch-network/node-rpc-api/transactions/processed-transaction-info-hex-by-transaction-hash"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "arch-network/node-rpc-api/openapi.json",
+              "directory": "arch-network/node-rpc-api"
+            }
           },
           {
             "group": " ",
