@@ -1,0 +1,228 @@
+---
+title: Changelog
+sidebarTitle: Cardano
+---
+
+## Overview
+
+<Update label="v1.8.0 - Conway compatibility">
+
+**Updated**:
+
+- `/transactions/{tx_hash}` Transaction details
+  - New output fields: `reg_certs`, `unreg_certs`, `vote_delegations`, `stake_vote_delegations`, `stake_reg_delegations`, `vote_reg_delegations`, `stake_vote_reg_delegations`, `auth_committee_hot_certs`, `resign_committee_cold_certs`, `reg_drep_certs`, `unreg_drep_certs`, `update_drep_certs`
+  - Extended redeemer information: `votes` and `proposals`
+
+**Updated**:
+
+- Any endpoints returning Scripts (e.g. Asset Policy, UTxOs, Script by script hash)
+  - Added `plutusv3` Script type
+  - `/policy/{policy}` Asset Policy
+  - `/transactions/{tx_hash}/outputs/{index}/txo` Transaction output by output reference
+  - `/transactions/outputs` Transaction outputs by output references
+  - `/addresses/cred/utxos` UTxOs by multiple payment credentials
+  - `/addresses/cred/{credential}/utxos` UTxOs by payment credential
+  - `/addresses/utxos` UTxOs by multiple addresses
+  - `/addresses/{address}/utxos` UTxOs at an address
+  - `/scripts/{script_hash}` Script by script hash
+
+**Updated**:
+
+- `/transactions/evaluate` Evaluate redeemers of a transaction
+  - Added returning `redeemer_tag` of vote and propose
+
+**Updated**:
+
+- `/accounts/{stake_addr}/updates` Stake account updates
+  - Added returning `registration_deposit`
+
+**Updated**:
+
+- `/pools/{pool_id}/updates` Stake pool updates
+  - `active_epoch_no` no longer required
+
+</Update>
+
+<Update label="v1.7.2">
+
+**Deprecated**:
+
+- `/era-history` Era history
+  - Please use the improved `/era-summaries` Era summary
+
+**Added**:
+
+- `/era-summaries` Era summary
+  - Replaces deprecated `/era-history`
+
+**Deprecated**:
+
+- `/protocol-params` Protocol parameters
+  - Please use the improved `/protocol-parameters` Protocol parameters
+
+**Added**:
+
+- `/protocol-parameters` Protocol parameters
+  - Replaces deprecated `/protocol-params`
+
+</Update>
+
+<Update label="v1.7.1">
+
+**Updated**:
+
+- `/markets/dexs/{dex}` DEX pairs
+  - Added `pair`, `policy`, and `asset_name` filters
+
+</Update>
+
+<Update label="v1.7.0">
+
+**Added**:
+
+- Direct Swap Contract on Managed Contracts API
+  - `/contracts/directSwap/createOffer` Create an offer
+    - Create a new offer for direct swap
+  - `/contracts/directSwap/cancelOffer` Cancel an offer
+    - Cancel an existing offer for direct swap
+  - `/contracts/directSwap/getOffers` Get all offers
+    - Get all the existing offers for direct swap
+  - `/contracts/directSwap/getOffers/:address` Get user's offers
+    - Get all the existing offers for a specific user
+  - `/contracts/directSwap/fillOffer` Fill an offer
+    - Fill an existing offer for direct swap
+
+</Update>
+
+<Update label="v1.6.3">
+
+**Updated**:
+
+- `/markets/dexs/stats/{dex}/{pair}` DEX and Pair Stats
+  - Added USD conversion for latest price, 1d, 1w, and 1mo
+
+</Update>
+
+<Update label="v1.6.2">
+
+**Updated**:
+
+- `/markets/dexs/stats/{dex}/{pair}` DEX and Pair Stats
+  - Added `latest_price`, `market_cap`, `supply`, and `unique_holders`
+
+</Update>
+
+<Update label="v1.6.1">
+
+**Updated**:
+
+- `/markets/dexs/trades/{dex}/{pair}` DEX and Pair Trades
+  - Added returning `a_to_b`, indicating the direction of each trade
+
+</Update>
+
+<Update label="v1.6.0">
+
+**Removed**:
+
+- Previously deprecated endpoints:
+  - From v1.4.3: `/datum/{datum_hash}`
+  - From v1.4.1: `/assets/policy/{policy}`, `/assets/policy/{policy}/accounts`, `/assets/policy/{policy}/addresses`, `/assets/policy/{policy}/txs`, `/assets/policy/{policy}/utxos`, `/assets/{asset}/txs`, `/assets/{asset}/updates`
+
+</Update>
+
+<Update label="v1.5.8">
+
+**Added**:
+
+- `/markets/dexs/stats/{dex}/{pair}` Get DEX Stats
+  - Returns DEX and Token Stats over different timeframes
+
+**Updated**:
+
+- `/markets/dexs/ohlc/{dex}/{pair}` Get DEX OHLC
+  - Now includes change percentage within each candle
+
+</Update>
+
+<Update label="v1.5.7">
+
+**Updated**:
+
+- `/accounts/{stake_addr}/addresses` Stake account addresses
+  - Added an `include_empty` optional parameter to include all addresses ever seen on-chain
+
+</Update>
+
+<Update label="v1.5.6">
+
+**Added**:
+
+- `/addresses/cred/{credential}/balance` Balance by payment credential
+  - Return total amount of assets, including ADA, in UTxOs controlled by a specific payment credential
+
+</Update>
+
+<Update label="v1.5.5">
+
+**Added**:
+
+- `/accounts/{stake_addr}/delegations` Stake account delegation history
+  - Returns list of delegation actions relating to a stake account
+
+**Updated**:
+
+- `/accounts/{stake_addr}/history` Stake account history
+  - Added `order`: The order in which the results are sorted (by epoch number)
+- `/accounts/{stake_addr}/rewards` Stake account rewards
+  - Added `order`: The order in which the results are sorted (by epoch number)
+- `/accounts/{stake_addr}/updates` Stake account updates
+  - Added `order`: The order in which the results are sorted (by absolute slot)
+
+</Update>
+
+<Update label="v1.5.4">
+
+**Updated**:
+
+- `/transactions/outputs` Transaction outputs by output references
+  - Added an `allow_missing` parameter prevent returning a 404 if any output references are not found
+
+</Update>
+
+<Update label="v1.5.3">
+
+**Updated**:
+
+- Resolution and sort enums for DeFi Market API endpoints
+- `/markets/dexs/trades/{dex}/{pair}` Get DEX trades
+- `/markets/dexs/ohlc/{dex}/{pair}` Get DEX OHLC
+
+</Update>
+
+<Update label="v1.5.2">
+
+**Added**:
+
+- `/pools/{pool_id}/delegators/{epoch_no}` Stake pool delegator history
+
+</Update>
+
+<Update label="v1.5.1">
+
+**Updated**:
+
+- DeFi Market API - **Now out of Beta!**
+
+**Added**:
+
+- `/markets/dexs/trades/{dex}/{pair}` Get DEX trades
+
+**Removed**:
+
+- `/markets/dexs/prices/{dex}/{pair}` Get DEX prices
+
+**Added**:
+
+- `/markets/dexs/ohlc/{dex}/{pair}` Get DEX OHLC
+</Update>

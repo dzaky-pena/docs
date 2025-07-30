@@ -1,0 +1,69 @@
+---
+title: Mempool Monitoring
+---
+
+The **Bitcoin Mempool** (short for "Memory Pool") is a critical component of the Bitcoin network where all valid but unconfirmed transactions are temporarily stored. When you initiate a Bitcoin transaction, it doesn't get added to the blockchain immediately. Instead, it first enters the Mempool of each participating node in the network.
+
+## The Function of the Mempool
+
+1. **Staging Area for Transactions:** The Mempool acts as a holding area for transactions waiting to be included in the next block. This allows miners to select which transactions to include based on factors like transaction fees.
+2. **Facilitates Fee Prioritization:** Since block space is limited (1 MB per block for Bitcoin), miners often prioritize transactions that offer higher fees. Transactions in the Mempool are usually sorted by fee rates, enabling miners to maximize their earnings.
+3. **Network Health Indicator:** The size and state of the Mempool can indicate the network's congestion level. A growing Mempool suggests more transactions are waiting to be processed than usual, which can lead to higher fees and longer confirmation times.
+4. **Transaction Propagation:** The Mempool helps in propagating transactions across the network. As each node receives a transaction, it validates it and adds it to its own Mempool before sharing it with neighboring nodes.
+
+The Bitcoin Mempool is essential for managing unconfirmed transactions. It serves as a temporary repository that enables efficient transaction processing, fee-based prioritization, and overall network stability.
+
+# Service Availability
+
+The Mempool Monitoring service is available on the following blockchains:
+
+| Services                 | Bitcoin                                                                 | Cardano       | Dogecoin                                                           |
+| ------------------------ | ----------------------------------------------------------------------- | ------------- | ------------------------------------------------------------------ |
+| **Mempool Node RPC**     | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/p2pmda6/bitcoin-mempool-monitoring-api) | *Coming Soon* | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/iu9fkge/dogecoin-node-rpc-api) |
+| **Mempool Metaprotocol** | [API Reference](https://www.postman.com/go-maestro/maestro-api/overview) | *Coming Soon* | *Coming Soon*                                                      |
+
+### Mempool Node RPC Service
+
+This service offers remote access to synced nodes via RPC protocols. It allows users to perform essential operations such as querying blockchain data securely and efficiently.
+
+It specializes in giving access to Mempool Information. It can track in real-time the state of unconfirmed transactions, as well as, mempool transaction ancestors and descendants.
+
+<Note>
+Find out more information about the [Node RPC](/node-rpc) Service.
+</Note>
+
+### Mempool Metaprotocol Service
+
+This service is a highly-optimized** mempool indexer for Bitcoin metaprotocols**, such as Runes and Inscriptions. It gives access to real-time metaprotocol information from unconfirmed transactions:
+
+- Retrieve mempool Runes balances and inscriptions at an address
+- Retrieve mempool UTxOs with Runes & Inscription info at an address
+
+This service allows to filter the mempool state by some number of "estimated blocks", in order to priortize for transsactions that are more likely to be minted in the next block.
+
+### Benefits for Developers
+
+Access to Bitcoin mempool APIs provides developers with real-time data about unconfirmed transactions waiting to be included in the blockchain. This access offers several benefits and enables a wide range of use-cases for application builders.
+
+1. **Real-Time Transaction Monitoring**
+   - **Immediate Insights & Enhanced User Experience: **Access to the mempool allows developers to monitor transactions as soon as they are broadcasted to the network. Developers can provide users with instant updates on the status of their transactions.
+2. **Optimal Fee Estimation:**
+   - **Dynamic Fee & Cost Efficiency :** By analyzing current mempool conditions, developers can help users set appropriate transaction fees to achieve desired confirmation times. Avoid overpaying fees during low congestion periods by adjusting fees based on real-time data.
+3. **Network Analysis and Health Monitoring:**
+   - **Congestion & Anomaly Detection:** Mempool data can signal network congestion, helping developers and users make informed decisions about transaction timing. Identify unusual patterns that may indicate spam attacks or other network issues.
+4. **Custom Transaction Selection for Miners:**
+   - **Maximizing Profits at Block Construction:** Miners can use mempool data to select transactions with higher fees, optimizing their earnings. Helps in creating blocks that maximize fee revenue while adhering to size limits.
+
+***
+
+### Use-Cases for App Builders
+
+Access to Bitcoin mempool APIs can enhance the functionality, efficiency, and user experience of blockchain applications. Whether it's optimizing transaction fees, providing immediate transaction feedback, or developing sophisticated analytics tools, mempool data enables a multitude of innovative use-cases:
+
+1. **Cryptocurrency Wallets:** Offer users real-time fee recommendations for optimal transaction confirmation times. Allow users to monitor the progress of their unconfirmed transactions.
+2. **Blockchain Explorers:** Display real-time data on unconfirmed transactions, including sizes, fees, and volume. Enable users to search and filter transactions based on various criteria.
+3. **Trading Platforms and Exchanges:** Use mempool data to anticipate market movements based on transaction volumes and fee rates. Optimize the timing of transactions to ensure faster confirmations.
+4. **Mining Software and Pools:** Develop smarter ways to select transactions that maximize revenue. Adjust mining strategies based on current mempool conditions.
+5. **Analytics and Research Tools:** Provide insights into transaction patterns, fee trends, and network health. Facilitate studies on blockchain behavior and transaction dynamics.
+6. **Transaction Accelerators:** Help users increase the fees of their unconfirmed transactions to expedite processing. Offer services to resolve transactions delayed due to low fees.
+

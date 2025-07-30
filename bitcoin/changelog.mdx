@@ -1,0 +1,349 @@
+---
+title: Changelog
+sidebarTitle: Bitcoin
+---
+
+<Update label="v0.2.5">
+
+## Added
+
+**New Indexer Endpoints**
+
+`/assets/collections/{collection_symbol}/stats`
+
+- Collection Stats by Collection Symbol
+
+`/transactions/{tx_hash}/metaprotocols`
+
+- Transaction Info with Metaprotocols
+
+**New Market Price API Endpoints**
+
+`/markets/btc/prices/batch`
+
+- Fetch  BTC prices by timestamp
+
+`/btc/prices/{timestamp}`
+
+- Fetch BTC price by timestamp
+
+**New Mempool API Endpoints**
+
+`/mempool/transactions/{tx_hash}/metaprotocols`
+
+- Transaction Info with Metaprotocols (Mempool-aware)
+
+**New Wallet API Endpoints**
+
+`/wallet/addresses/{address}/activity`
+
+- Wallet Satoshi Activity by Address (Mempool-aware)
+
+`/wallet/addresses/{address}/activity/metaprotocols`
+
+- Metaprotocol Activity by Address
+
+`/wallet/addresses/{address}/balance/historical`
+
+- Historical Satoshi Balance by Address
+
+`/wallet/addresses/{address}/inscriptions/activity`
+
+- Inscription Activity by Address (Mempool-aware)
+
+`/wallet/addresses/{address}/runes/activity`
+
+- Rune Activity by Address (Mempool-aware)
+
+`/wallet/addresses/{address}/statistics`
+
+- Address Statistics (Mempool-aware)
+
+</Update>
+<Update label="v0.2.4">
+
+## Added
+
+**New Indexer Endpoints**
+
+`/addresses/{address}/brc20/transfer_inscriptions`
+
+- List of all BRC-20 transfer inscriptions at a specific address
+
+**New Market Price API Endpoints**
+
+`/markets/dexs`
+
+- List of all available DEXes
+
+`/markets/dexs/ohlc/{dex}/{symbol}`
+
+- Historical market activity (in candlestick OHLC format) for a specific DEX and Rune
+
+`/markets/dexs/trades/{dex}/{symbol}`
+
+- Historical trades with price (in satoshis) for a specific DEX and Rune
+
+`/markets/runes`
+
+- List of available Rune registries
+
+</Update>
+<Update label="v0.2.3">
+
+## Added
+
+**New Indexer Endpoints**
+
+`/addresses/{address}/balance`
+
+- Total Bitcoin balance (in Satoshi) at specified address
+
+`/transactions/{tx_hash}/outputs/{output_index}`
+
+- UTXO information including metaprotocol data
+
+`/addresses/{address}/txs`
+
+- new confirmation filter in Transasction by address
+
+**New Mempool-Aware Endpoints**
+
+\`/mempool/addresses/\{address}/balance
+
+- Total Bitcoin balance (in Satoshi) at specified address
+
+`/mempool/assets/runes/{rune}/holders`
+
+- Total Runes balance at specified address
+
+</Update>
+<Update label="v0.2.2">
+
+## Added
+
+**New Collection  Endpoints**
+
+`/assets/collections/{collection_symbol}/inscriptions`
+
+- Inscription IDs by Collection Symbol
+
+`/assets/collections/{collection_symbol}/metadata`
+
+- Collection Metadata by Collection Symbol
+
+`/assets/inscriptions/{inscription_id}/collection`
+
+- Collection Metadata by Inscription
+
+**New Inscription Endpoints**
+
+`/assets/inscriptions/{inscription_id}/activity`
+
+- List of all transactions that the inscription was involved in, starting with the reveal tx.
+
+`/assets/inscriptions/{inscription_id}/metadata`
+
+- Metadata specific to an inscription.
+
+**New Block  Endpoints**
+
+`/blocks/{height_or_hash}`
+
+- Information about a block, including a flag to indicate if it involved metaprotocols.
+
+`/blocks/{height_or_hash}/transactions`
+
+- List of transactions in the block, providing overall information for each.
+
+**New Transaction Endpoints**
+
+`/transactions/{tx_hash}`
+
+- Information about a transaction, including a flag to indicate if the transaction involved metaprotocols.
+
+`/transactions/{tx_hash}/metaprotocols`
+
+- Information about a transaction, including info about metaprotocols in inputs and outputs.
+
+**New Mempool Block Fee Rates Endpoint**
+
+`/mempool/fee_rates`
+
+- Statistics regarding fee rates of transactions within estimated mempool blocks
+
+**New RPC Endpoints**
+
+`/block/recent`
+
+- Recent block info"
+
+`/transaction/batch`
+
+- Transaction info batch by hash array
+
+`/transaction/hex`
+
+- Transaction info by hex
+
+`/transaction/recent`
+
+- Recent transactions
+
+## Improved
+
+**Updated Runes and Inscription Info endpoints**
+
+`/assets/inscriptions/{inscription_id}`
+
+- Updates response schema. Backward compatible
+
+`/assets/runes/{rune}`
+
+- removed field: `data.total_utxos`
+
+**Updated Inscription Activity Endpoints**
+
+`/blocks/{height_or_hash}/inscriptions/activity`
+
+- Updates response schema. Backward compatible
+
+`/transactions/{tx_hash}/inscriptions/activity`
+
+- Updates response schema. Backward compatible
+
+**Updated Mempool Block Limit**
+
+`/mempool/addresses/{address}/runes`
+
+- Changed mempool\_blocks\_limit in query
+
+`/mempool/addresses/{address}/utxos`
+
+- Changed mempool\_blocks\_limit in query
+
+</Update>
+<Update label="v0.2.1">
+
+## Added
+
+**New Inscription Activity Endpoints**
+
+`/blocks/{height_or_hash}/inscriptions/activity`
+
+- List of all inscription activity in the block
+
+`/transactions/{tx_hash}/inscriptions/activity`
+
+- List of all inscription activity in a transaction
+
+**New Block Volume and Miner Info**
+
+`/block/{height_or_hash}/miner`
+
+- Block Miner information
+
+`/block/{height_or_hash}/volume`
+
+- Block volume in Satoshis
+
+**New Transaction Decode Endpoint**
+
+`rpc/transaction/decode`
+
+- Decode Raw transaction
+
+**New Recent Transactions Endpoint**
+
+`rpc/transaction/recent/{count}`
+
+- List of ordered recent transactions
+
+## Improved
+
+**Updated path url for PSBT Decode Endpoint**
+
+`/transaction/psbt/decode`
+
+- Decode PSBT transaction
+
+</Update>
+<Update label="v0.2.0">
+
+## Added
+
+**New Inscription Endpoints**
+
+`/addresses/{address}/inscriptions`
+
+- List of all inscriptions which reside at a specific address of script pubkey
+
+`/assets/inscriptions/{inscription_id}`
+
+- Information about an inscription
+
+`/assets/inscriptions/{inscription_id}/content_body`
+
+- Paginated response of inscription content body byte array
+
+## Improved
+
+**Node RPC moved to dedicated folder**
+
+`/rpc/block/*`
+
+- endpoints moved to Node RPC folder
+
+`/rpc/mempool/*`
+
+- endpoints moved to Node RPC folder
+
+`/rpc/transaction/*`
+
+- endpoints moved to Node RPC folder
+
+***
+
+</Update>
+<Update label="v0.1.1">
+
+## Added
+
+**Filter UTxO without Runes and Inscriptions**
+
+`/addresses/{address}/utxos`
+
+- `exclude_metaprotocols` flag to allow excluding metaprotocol UTxOs in Runes and inscriptions. To use, append the full query parameter `?exclude_metaprotocols=true`
+
+## Improved
+
+**Divisibility field added to represent Runes fractional balances.**
+
+- `/assets/runes/{rune}/holders`
+- `/assets/runes/{rune}`
+- `/addresses/{address}/runes/{rune}`
+- `/addresses/{address}/runes`
+- `/assets/runes/{rune}/utxos`
+
+## Added
+
+**Adding Runes Circulating supply**
+
+`/assets/runes/{rune}`;
+
+- Added `circulating_supply` to provide the current amount of a specific Rune in circulation.
+
+***
+
+</Update>
+<Update label="v0.1.02">
+
+## Added
+
+**Ignore dust UTxO filter**
+
+`/addresses/{address}/utxos`
+
+- Added the `filter_dust_threshold` option to ignore UTxOs below a specified number of satoshis.
+
+</Update>

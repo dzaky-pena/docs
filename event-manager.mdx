@@ -1,0 +1,139 @@
+---
+title: Event Manager
+---
+
+*Real-time event notification systems* are a game-changer for developers building **responsive, reactive applications.** Instead of "pull-based" APIs requiring the client to explicitly request data from the blockchain, "push-based" APIs automatically send data to a client as soon as certain events happen on-chain.
+
+Leading to:
+
+1. Significant savings in API usage and billing
+2. Increased app responsiveness with better user experience.
+
+**Maestro's Event Manager** is a *blockchain event notification service* that monitors the blockchain network for user-specified events and notifies applications in real-time via *Webhooks*.
+
+This allows applications to stay updated with on-chain activities such as:
+
+- **Wallet Event:** Track wallet deposits and withdraws
+- **Token Activity:** Token transfers or NFT mints
+- **Script Execution:** Execution of scripts and smart-contracts
+- **Mempool State:** Pending transactions in the mempool
+- **Network Activity:** New block minted or blockchain reorgs
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-PJMRZxbvwakrLXsU37h7K-20250118-023501.png)
+</Frame>
+
+## Mempool-Aware Event Notifications
+
+**Maestro's Event Manager** has a unique feature in that it is "*mempool-aware"*. That means every configured Event Webhook has two types of notification:
+
+1. **Mempool Notification**: Triggered when the event is detected in the mempool
+2. **Onchain Notification**: Triggered when the event is first minted onchain (block confirmation = 1).
+
+## Benefits of Event-Driven App Architecture
+
+By subscribing to these notifications, developers can create applications that react instantly to blockchain activity, **improving user experience and enabling a variety of innovative functionalities.**
+
+1. **Reduced Overhead:** Instead of constantly querying node data to check if something happened onchain, your app can rely on real-time push notifications, resulting in **significantly less API calls.**
+2. **Real-time Experience:** Create a responsive app that immediately updates users with their most important events creating a **better user experience**. (e.g., “your NFT was just transferred!”)
+3. **Scalability and Cost Savings:** Maestro's Event Manager handles the heavy lifting of monitoring the chain so your app never misses an important event. This results in **reduced infrastructure complexity and long-term cost savings**.
+
+***
+
+# Service Availability
+
+The Event Manager service is available on the following blockchains:
+
+| Service           | Bitcoin                                                                 | Cardano       | Dogecoin      |
+| :---------------- | :---------------------------------------------------------------------- | :------------ | :------------ |
+| **Event Manager** | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/1zgdbcz/bitcoin-event-manager-api) | *Coming Soon* | *Coming Soon* |
+
+## Event Types Available
+
+| **Event Type**               | **Notify on**                                                                                             | **Trigger Conditions**                                                                                            |
+| :--------------------------- | :-------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| **Transaction Notification** | Specific transaction accepted into the mempool and then confirmed onchain                                 | **Trigger**=Transaction&#xA;**Field**= tx\_hash&#xA;**Operator**= equal to&#xA;**Value**= transaction ID          |
+| **Address Notification**     | Specific address withdrawals or deposits by a transaction entering the mempool and then confirmed onchain | **Trigger**=Transaction&#xA;**Field**= inputs\_and\_outputs&#xA;**Operator**= containts&#xA;**Value**= address ID |
+|                              |                                                                                                           |                                                                                                                   |
+
+***
+
+## How Does the Event Manager Work?
+
+At a high level, here’s how the event notification service operates:
+
+### Set up an Event Manager
+
+Login to your [Dashboard](https://dashboard.gomaestro.org/login) and navigate to the **"Event"** page. You must first create an *Event Manager* by clicking on the "Create Webhook" button selecting which blockchain and network you want to track. There are two types of Trigger:
+
+- **Transaction:** Filter events based on transaction information: hash, address, asset, etc.
+- **Block:** Filter events based on block information: height, fee, block space, etc. (*currently not-available*)
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-nxqDkgGZwYSbKpBDXEie3-20250118-023544.png)
+</Frame>
+
+<Note>
+**Using the API Interface**
+Create Event Manager: [`POST eventmanager.gomaestro-api.org/v0/managers`](/bitcoin/create-event-manager")
+</Note>
+
+### Setup Webhook
+
+Configure a *Webhook endpoint URL* in your application where the notifications will be sent. This endpoint acts as a receiver for event data pushed by the Event Manager.
+
+### Configure an Event Triggers
+
+Event triggers must be configured to filter only events important to the application or end-user, such as wallet deposits or transactions processed. The following trigger filters are available.
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-oDW6CpO3wuDZxx9DcYccL-20250118-023723.png)
+</Frame>
+
+<Note>
+**Using the API Interface**
+Create Event Trigger: [`POST eventmanager.gomaestro-api.org/v0/triggers`](/bitcoin/create-event-manager-trigger)
+</Note>
+
+### Processing Real-Time Notifications:
+
+When the subscribed event occurs on-chain, the notification service sends a HTTP request (a “webhook”) to your specified endpoint (for example, [https://myapp.com/api/notifications](https://myapp.com/api/notifications)) with details about the event. Your application can process the incoming data to trigger workflows, update user interfaces, or store relevant information.
+
+### Tracking Event Logs
+
+Additionally, the Event Manager allows you to retrieve event log history that can be used for various purposes such as audit logs, trend analytics, and time-series charts.
+
+<Note>
+**Using the API Interface**
+Retrieve Event Logs: [`GET eventmanager/logs/{id}`](/bitcoin/event-log-info-by-id)
+</Note>
+
+***
+
+## Common Use Cases for Real-Time Event Notifications
+
+### DeFi Protocol Monitoring
+
+**Liquidity Pool Events**: Get alerts when large liquidity deposits or withdrawals occur, or if pool parameters change.
+**Loan Liquidations:** Notify borrowers (or watchers) in real-time when a position is at risk or has been liquidated.
+
+### NFT Marketplace & Collectibles
+
+**Mint Tracking:** Monitor when new tokens are minted so you can update supply or notify users.
+Transfer/Ownership Updates: Send push notifications when an NFT changes hands.
+**Auction Bids:** Real-time updates for any new bids or final sales.
+
+### Wallet & Portfolio Tracking
+
+**Address Activity: **Keep track of inbound/outbound transactions for a user’s wallet. Helpful for generating push notifications.
+**Token Balance Changes:** When an address receives a new token or sells a portion of a token.
+
+### Transaction Lifecycle Tracking
+
+**Pending → Mined → Confirmed:** Provide instant feedback to users about where their transaction is in the pipeline.
+**Dropped or Replaced Transactions:** Notify users if their transaction was replaced by a new one with a higher fee.
+
+### Security & Monitoring
+
+**Smart Contract Exploit Detection:** Set up alerts for large, abnormal transactions on known vulnerable contracts.
+**Whitelist/Blacklist:** Immediately know if a blacklisted address interacts with your protocol.

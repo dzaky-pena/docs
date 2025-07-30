@@ -1,0 +1,56 @@
+---
+title: API Reference
+---
+
+<CardGroup cols={2}>
+    <Card title="Node RPC API"/>
+</CardGroup>
+
+***
+
+# Node RPC API
+
+## Account
+
+| **Title**       | **Endpoint**                | **Description**           |
+| --------------- | --------------------------- | ------------------------- |
+| [Account address](https://docs.gomaestro.org/arch-network/account-address) | rpc/account/address         | Account address by pubkey |
+| [Account info](https://docs.gomaestro.org/arch-network/k9a4-account-info)    | rpc/account/info            | POST Account info by pubkey    |
+| [Account info](https://docs.gomaestro.org/arch-network/account-info)    | rpc/account/info/\{address} | Account info by pubkey    |
+
+***
+
+## Block
+
+| **Title**         | **Endpoint**                                    | **Description**                          |
+| ----------------- | ----------------------------------------------- | ---------------------------------------- |
+| [Block count](https://docs.gomaestro.org/arch-network/block-count)       | rpc/block/count                                 | Block count                              |
+| [Latest block info](https://docs.gomaestro.org/arch-network/latest-block-info) | rpc/block/latest                                | Latest block info                        |
+| [Latest block hash](https://docs.gomaestro.org/arch-network/latest-block-hash) | rpc/block/latest/hash                           | Latest block hash                        |
+| [Block range info](https://docs.gomaestro.org/arch-network/block-range-info)  | rpc/block/range/\{start\_height}/\{end\_height} | Block range info by start and end height |
+| [Recent block info](https://docs.gomaestro.org/arch-network/recent-block-info) | rpc/block/recent/\{count}                       | Recent block info by count               |
+| [Block info](https://docs.gomaestro.org/arch-network/block-info)        | rpc/block/\{height\_or\_hash}                   | Block info by height or hash             |
+
+***
+
+## Program
+
+| **Title**        | **Endpoint**         | **Description**  |
+| :--------------- | :------------------- | :--------------- |
+| [Program accounts](https://docs.gomaestro.org/arch-network/program-accounts) | rpc/program/accounts | Program accounts |
+
+***
+
+## Transaction
+
+| **Title**                  | **Endpoint**                | **Description**                           |
+| -------------------------- | --------------------------- | ----------------------------------------- |
+| [Send Transaction](https://docs.gomaestro.org/arch-network/send-transaction)           | rpc/transaction/send        | Send transaction to the network           |
+| [Send multiple transactions](https://docs.gomaestro.org/arch-network/send-multiple-transactions) | rpc/transaction/send/batch  | Send multiple transactions to the network |
+| [Processed transaction info](https://docs.gomaestro.org/arch-network/processed-transaction-info) | rpc/transaction/\{tx\_hash} | Processed transaction info by hash        |
+| [Processed transaction info hex](https://docs.gomaestro.org/arch-network/processed-transaction-info-hex) | rpc/transaction/\{tx\_hash}/hex | Processed transaction info by hash        |
+| [Recent transactions](https://docs.gomaestro.org/arch-network/recent-transactions) | rpc/transaction/recent/\{count} | List of recent transactions       |
+| [Recent transactions hex](https://docs.gomaestro.org/arch-network/recent-transactions-hex) | rpc/transaction/recent/\{count}/hex | List of recent transactions in HEX format       |
+
+***
+

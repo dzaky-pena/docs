@@ -1,0 +1,124 @@
+---
+title: GET Transaction Output by Reference
+---
+
+## Prerequisites
+
+Before submitting an API request, ensure you have completed the following:
+
+- Created an Account
+- Created a Project
+
+
+## Steps to Submit an API Request
+
+The [Blockchain Indexer]() API allows applications to retrieve on-chain data and submit transactions.
+
+In this example, we will use the `Pre-Production Cardano` network as the selected network for our project.
+
+
+### 1. Select the Network
+
+- Ensure your project is configured to use the **Pre-Production Cardano network**.
+
+
+### 2. Retrieve Transaction Output
+
+- Use the following endpoint to get detailed information about a transaction and its output UTxO:
+
+```
+/transactions/{tx_hash}/outputs/{index}/txo
+```
+
+
+### 3. Specify Path Parameters
+
+- Include the required path parameters in your request:
+
+| Parameter | Data Type | Description                                            | Required |
+| :-------- | :-------- | :----------------------------------------------------- | :------- |
+| `tx_hash` | String    | The unique identifier of the transaction.              | yes      |
+| `index`   | Integer   | The output index is specifying which UTxO to retrieve. | yes      |
+
+
+### 4. Specify Query Parameters (Optional)
+
+- Include **optional** query parameters as needed:
+
+| Parameter   | Data Type | Description                                                                           | Required |
+| :---------- | :-------- | :------------------------------------------------------------------------------------ | :------- |
+| `with_cbor` | Boolean   | Set to `true` to include the CBOR encoding of the transaction output in the response. | no       |
+
+
+### 5. Send the API Request
+
+- Use cURL or your preferred tool to send the API request:
+
+For this example, we will use:
+
+- `tx_hash`: **9907c1bcab96889368d975ec1964e2fedfef22ce4a0e367bf9cb621b9f0dcb4a**
+- `index`: **0**
+- `with_cbor`: **true**
+
+
+
+```bash
+curl -X GET \
+  -H "api-key: <your_project_api_key>" \
+  -H 'Accept: application/json' \
+ https://preprod.gomaestro-api.org/v1/transactions/9907c1bcab96889368d975ec1964e2fedfef22ce4a0e367bf9cb621b9f0dcb4a/outputs/0/txo?resolve_datums=true&with_cbor=true
+
+```
+
+
+### 6. Review the Response
+
+The API will return a response like the following:
+
+```json
+"data": {
+    "tx_hash": "9907c1bcab96889368d975ec1964e2fedfef22ce4a0e367bf9cb621b9f0dcb4a",
+    "index": 0,
+    "assets": [
+        {
+            "unit": "lovelace",
+            "amount": 7280082022
+        },
+        {
+            "unit": "34250edd1e9836f5378702fbf9416b709bc140e04f668cc3552085184154414441636f696e",
+            "amount": 10824
+        }
+    ],
+    "address": "addr_test1vpfwv0ezc5g8a4mkku8hhy3y3vp92t7s3ul8g778g5yegsgalc6gc",
+    "datum": null,
+    "reference_script": null,
+    "txout_cbor": "a200581d6052e63f22c5107ed776b70f7b92248b02552fd08f3e747bc74509944101821b00000001b1ed3c66a1581c34250edd1e9836f5378702fbf9416b709bc140e04f668cc355208518a1494154414441636f696e192a48"
+},
+"last_updated": {
+    "timestamp": "2024-09-06 13:56:56",
+    "block_hash": "ca6cf1b408ee8eb02019bce77995c5ed5983c2b553b1b6b2fcecfaaf72d1fc59",
+    "block_slot": 69947816
+}
+```
+
+
+
+
+### 7. Understanding the Response
+
+| **Term** | **Definition** |
+| :------- | :------------- |
+| `tx_hash`                | The unique hash identifier of a transaction.                                                                                    |
+| `index`                  | The index position of the transaction output (UTxO).                                                                            |
+| `assets unit`            | The reference for native assets, either `hex(policy_id)#hex(asset_name)` or `lovelace`.                                         |
+| `assets quantity`        | The quantity of the native asset.                                                                                               |
+| `address`                | The address controlling the UTxO.                                                                                               |
+| `datum type`             | Type of datum: either `inline` or `hash`.                                                                                       |
+| `datum hash`             | The hash of the datum.                                                                                                          |
+| `datum bytes`            | Hex-encoded CBOR bytes of the datum (`null` if datum type is `hash` and corresponding datum bytes have not been seen on-chain). |
+| `datum json`             | JSON format of the datum value.                                                                                                 |
+| `reference_script type`  | The type of reference script: `native`, `plutusv1`, or `plutusv2`.                                                              |
+| `reference_script hash`  | The hash of the reference script.                                                                                               |
+| `reference_script bytes` | The script bytes (`null` if the script is `native`).                                                                            |
+| `reference_script json`  | JSON format of the script.                                                                                                      |
+

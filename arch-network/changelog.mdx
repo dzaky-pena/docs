@@ -1,0 +1,61 @@
+---
+title: Changelog
+sidebarTitle: Arch Network
+---
+
+<Update label="v0.2.2">
+
+    ## Added
+
+    **New Account info by Address Hex Endpoints**
+
+    `/account/info/{address}/hex`
+    -  Account info by Address Hex
+
+    **New Recent Transaction and Block Endpoints**
+
+    `/transaction/recent`
+    -  List of recent transactions info
+
+    `/block/recent`
+    -  List of recent block info
+
+    ## Improved
+
+    **Vairous Backward Compatible Updates to Arch RPC Endpoints**
+
+    - `/block/latest`
+    - `/block/{height_or_hash}`
+    - `/account/info/{address}`
+    - `/account/address`
+    - `/account/info`
+    - `/block/count`
+    - `/block/latest/hash`
+    - `/block/range/{start_height}/{end_height}`
+    - `/block/recent/{count}`
+    - `/program/accounts`
+    - `/transaction/recent/{count}`
+    - `/transaction/recent/{count}/hex`
+    - `/transaction/send`
+    - `/transaction/send/batch`
+    - `/transaction/{tx_hash}`
+    - `/transaction/{tx_hash}/hex`
+</Update>
+
+<Update label="v0.2.1">
+    ## Added
+    
+    **New Recent Arch Transaction Endpoints**
+
+    `/transaction/recent/{count}`
+    -  List of recent transactions
+
+    `/transaction/recent/{count}/hex`
+    -  List of recent transactions in HEX format
+
+
+    **New Recent Arch Transaction Endpoints**
+
+    `/transaction/{tx_hash}/hex`
+    -  Processed Transaction info in Hex format
+</Update>

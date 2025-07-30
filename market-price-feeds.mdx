@@ -1,0 +1,99 @@
+---
+title: Market Price Feeds
+---
+
+Maestro's *Market Price API* provides **high-fidelity smart contract data feeds** from top DeFi protocols in both the Bitcoin and Cardano ecosystems, enabling the exploration, visualization, and discovery of trends in both historical and real-time DeFi markets. The API democratizes access to DeFi data, facilitating various use-cases for developers, researchers, and traders. It not only abstracts away the complexity of accessing valuable smart contract or UTXO data but also processes and aggregates this data into dApp metrics and financial indicators, enabling advanced blockchain analytics. In the future, it will offer a graphical visualization interface for creating custom dashboards, ultimately helping users to build better dApps, find arbitrage opportunities, and discover new trends in DeFi.
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-2DyJbrFCxnzQdJ1RYp6YY-20241011-055039.gif)
+</Frame>
+
+<Warning>
+This service is only included in subscriptions above the **Artist** tier.
+</Warning>
+
+## Practical Use Cases
+
+- **DeFi Analytics**: Track and analyze liquidity, trading volumes and user activity from various DeFi protocols such as Minswap, Genius Yield and Magic Eden.
+- **Smart Contract Analysis**: Analyze the interactions and transactions of a specific smart contract, useful for monitoring the usage and activity of a dApp or for auditing a smart contract.
+- **NFT Analytics**: Analyze trends and data related to Non-Fungible Tokens (NFTs), such as sales volumes, average prices, and popular collections.
+- **Token/Rune Analytics**: Analyze transactions and transfers of a specific asset, such as token/rune transfers, holder distribution, and on-chain trading activity.
+- **Wallet Tracking**: Track and analyze the transactions of a specific Cardano or Bitcoin address; useful for monitoring one's own transactions or for analyzing the activity of a specific address, such as that of a DEX.
+
+### Mempool Awareness
+
+Add the `mempool=included` query parameter to your endpoint to return the latest market price including trades from the mempool for fast price discovery.
+
+This functionality includes:
+
+- **Rollback Protection:** The system monitors for block reorganizations and automatically rolls back unconfirmed or invalidated trades, ensuring the data reflects the confirmed state of the chain.
+
+*Even though real-time pricing includes mempool trades, the API corrects prices if blocks are reorged—no false positives or phantom trades in pricing.*
+
+For developers, this means that you can use the price data immediately but still trust that it will self-correct if the underlying block is not confirmed.
+
+> *By the numbers:*
+>
+> We refresh this index at a 1 second frequency so both the index and candlesticks are continuously up-to-date.
+>
+> Our index maintains a buffer of 10 blocks, which allows us to properly update mempool data to be confirmed, without having duplicate or incorrect data.
+
+***
+
+# Service Availability
+
+The Market Price service is available on the following blockchains:&#x20;
+
+| Service          | Bitcoin                                                                                                        | Cardano                                                                                                        | Dogecoin      |
+| ---------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------- |
+| **Market Price** | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/f0umfm5/bitcoin-market-price-api) | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/sgq57ds/cardano-market-price-api) | *Coming Soon* |
+
+## Format definitions
+
+Detailing the Maestro Market API response structures
+
+### Prices
+
+The DEX OHLC endpoint will return OHLC (Open High Low Close) prices aggregated over the prices of individual trades for a particular time resolution and over a time range.
+
+**Bitcoin**
+
+Example:
+
+- "symbol": "BTC-840000:3" = Bitcoin-<a href="https://unisat.io/runes/detail/840000:3" target="_blank">DOG•GO•TO•THE•MOON</a> (pair)
+- "side": "buy" = puchase rune with Bitcoin
+- price = cost per rune (in satoshis)
+
+<Note>
+**Add Mempool awareness** to your endpoint as an optional query parameter.
+
+Example: `?mempool=included`
+
+[https://xbt-mainnet.gomaestro-api.org/v0/markets/dexs/ohlc/magiceden/BTC-840000:3?mempool=included](https://xbt-mainnet.gomaestro-api.org/v0/markets/dexs/ohlc/magiceden/BTC-840000:3?mempool=included)
+</Note>
+
+**Cardano**
+
+- coin A price = coin A traded amount / coin B traded amount
+- coin B price = coin B traded amount / coin A traded amount
+
+<Warning>
+**This service is only included in subscriptions above the *****Artist***** tier.**
+</Warning>
+
+## Data Accessibility
+
+The Market Price API service enhances *Data Accessibility* in the following ways:
+
+1. **Abstracts Complexity**: The Bitcoin and Cardano blockchains contains a vast amount of data that is publicly available but challenging to access and analyze due to their complex natures. Maestro's service abstracts away this complexity and provides easy access to valuable smart contract data (Cardano). Users do not need to have deep technical knowledge on how to parse and process smart-contract data (script, datum, UTxOs, etc.).
+2. **Democratizes Access**: By providing a high-fidelity smart contract data feed, Maestro makes it easy for a wide range of users, whether they are developers, researchers, or traders, to access the DeFi data they need. This democratization of access helps fuel adoption and innovation in the ecosystem by enabling various use cases, such as building better dApps, finding arbitrage opportunities, and discovering new trends in DeFi.
+3. **Provides Real-time and Historical Data**: Maestro's Market Price API provides access to both historical and real-time smart contract or DEX market data. This is crucial for conducting a comprehensive analysis, backtesting strategies, and making informed decisions based on the most current data.
+4. **Facilitates Integration**: The API format of Maestro’s Market Price API service facilitates integration into various applications, tools, or services. Developers can easily integrate the API into their dApps, trading bots, or analytics platforms to access the data they need programmatically.
+
+## Data Analysis
+
+The Market Price API service provides superior *Data Analysis* in several ways:
+
+1. **Processing and Aggregation**: The raw blockchain data includes specific smart contract (Cardano) or complex UTXO interactions happening on DEXes and lending protocols, which can be challenging to analyze. Maestro's service processes and aggregates this raw contract data into more understandable dApp metrics and financial indicators. This transformation enables more advanced blockchain analytics and makes it easier to extract deep insights from the Bitcoin and Cardano DeFi ecosystems.
+2. **Enables Advanced Blockchain Analytics**: By processing and aggregating dApp metrics, Maestro's service enables users to conduct more advanced blockchain analytics. Researchers, traders, and developers can extract deep insights from both the Bitcoin and Cardano DeFi ecosystems, which is particularly valuable for making informed decisions, optimizing strategies, and identifying new opportunities.
+

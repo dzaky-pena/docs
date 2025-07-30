@@ -1,0 +1,142 @@
+---
+title: Changelog
+sidebarTitle: Dogecoin
+---
+
+<Update label="v0.2.2">
+
+<div style={{ backgroundColor: 'rgb(59, 159, 15)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Improved
+</div>
+
+**Node RPC moved to dedicated folder**
+
+`/addresses/{address}/inscriptions`
+  -  Updates response schema. Backward compatible
+
+`/assets/dunes/{dune}`
+  -  removed field: `data.total_utxos`
+
+</Update>
+
+<Update label="v0.2.0">
+
+<div style={{ backgroundColor: 'rgb(33, 102, 174)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**New Inscription Endpoints**
+
+`/addresses/{address}/inscriptions`
+  -  List of all inscriptions which reside at a specific address of script pubkey
+
+`/assets/inscriptions/{inscription_id}`
+  - Information about an inscription
+
+`/assets/inscriptions/{inscription_id}/content_body`
+  - Paginated response of inscription content body byte array
+
+<div style={{ backgroundColor: 'rgb(59, 159, 15)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**Node RPC moved to dedicated folder**
+
+`/rpc/block/*`
+  -  endpoints moved to Node RPC folder
+
+`/rpc/mempool/*`
+  -  endpoints moved to Node RPC folder
+
+`/rpc/transaction/*`
+  -  endpoints moved to Node RPC folder
+
+</Update>
+
+<Update label="v0.1.2">
+
+<div style={{ backgroundColor: 'rgb(33, 102, 174)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**New DRC20 Transfer Inscriptions**
+
+`addresses/\{address}/transfer\inscriptions`
+  - DRC20 Transfer Inscriptions by Address
+
+</Update>
+
+<Update label="v0.1.1">
+
+<div style={{ backgroundColor: 'rgb(33, 102, 174)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**Filter UTxO without Runes and Inscriptions**
+
+`/addresses/{address}/utxos`
+  - `exclude_metaprotocols` flag to allow excluding metaprotocol UTxOs in Dunes and inscriptions. To use, append the full query parameter `?exclude_metaprotocols=true`
+
+<div style={{ backgroundColor: 'rgb(59, 159, 15)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Improved
+</div>
+
+**Adding Runes Circulating supply**
+
+`/assets/dunes/{rune}`;
+  - Added `circulating_supply` to provide the current amount of a specific Dune in circulation.
+
+
+</Update>
+
+<Update label="v0.1.05">
+
+<div style={{ backgroundColor: 'rgb(33, 102, 174)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**New Dunes Holders**
+
+`​/assets/dunes/{dune}/holders`
+  - List of all addresses that hold the specified Dune, with the respective amounts.
+
+</Update>
+
+<Update label="v0.1.04">
+
+<div style={{ backgroundColor: 'rgb(33, 102, 174)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**New Transaction Details**
+
+`/rpc/transactions/{tx_hash}`
+  - Transaction Information
+
+</Update>
+
+<Update label="v0.1.03">
+
+<div style={{ backgroundColor: 'rgb(33, 102, 174)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Added
+</div>
+
+**Dune UTxOs by Address and Dune**
+
+`/addresses/{address}/dunes/{dune}`
+  - Returns all UTxOs controlled by the specified address or script pubkey that contain a specified type of Dune;
+
+</Update>
+
+<Update label="v0.1.02">
+
+<div style={{ backgroundColor: 'rgb(59, 159, 15)', color: 'white', fontWeight: 'bold', padding: '6px', maxWidth: '100px', maxHeight: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: '6px' }}>
+  Improved
+</div>
+
+**Ignore dust UTxO filter**
+
+`/addresses/\{address}/utxos`
+  - Added `filter_dust_threshold` filter to ignore UTxOs containing less than specified shibes.
+
+</Update>

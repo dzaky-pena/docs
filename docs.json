@@ -1,215 +1,827 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Tavus",
+  "name": "Maestro",
   "colors": {
-    "primary": "#F230AA",
-    "light": "#FF6CC8",
-    "dark": "#F230AA"
+    "primary": "#c53dd8",
+    "light": "#c53dd8",
+    "dark": "#c53dd8"
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
   },
   "favicon": "/favicon.png",
+  "fonts": {
+    "heading": {
+      "family": "Ranua",
+      "source": "https://www.gomaestro.org/fonts/Ranua/300.otf",
+      "format": "woff"
+    },
+    "body": {
+      "family": "Ranua",
+      "source": "https://www.gomaestro.org/fonts/Ranua/300.otf",
+      "format": "woff"
+    }
+  },
   "navigation": {
-    "anchors": [
+    "tabs": [
       {
-        "anchor": "Documentation",
+        "tab": "Home",
         "groups": [
           {
-            "group": "Getting Started",
-            "icon": "rocket",
-            "pages": ["sections/introduction", "sections/models"]
-          },
-          {
-            "group": "Conversational Video Interface",
-            "icon": "messages",
+            "group": " ",
             "pages": [
-              "sections/conversational-video-interface/overview-cvi",
-              {
-                "group": "Quickstart",
-                "pages": [
-                  "sections/conversational-video-interface/quickstart/use-the-full-pipeline",
-                  "sections/conversational-video-interface/quickstart/conversation-recordings",
-                  "sections/conversational-video-interface/quickstart/customize-conversation-ui"
-                ]
-              },
-              {
-                "group": "Conversation",
-                "pages": [
-                  "sections/conversational-video-interface/conversation/overview",
-                  {
-                    "group": "Customizations",
-                    "pages": [
-                      "sections/conversational-video-interface/conversation/customizations/audio-only",
-                      "sections/conversational-video-interface/conversation/customizations/call-settings",
-                      "sections/conversational-video-interface/conversation/customizations/closed-captions",
-                      "sections/conversational-video-interface/conversation/customizations/background-customizations"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Persona",
-                "pages": [
-                  "sections/conversational-video-interface/persona/overview",
-                  {
-                    "group": "Layer Configurations",
-                    "pages": [
-                      "sections/conversational-video-interface/persona/perception",
-                      "sections/conversational-video-interface/persona/stt",
-                      "sections/conversational-video-interface/persona/llm",
-                      "sections/conversational-video-interface/persona/tts"
-                    ]
-                  },
-                  {
-                    "group": "Tool Calling",
-                    "pages": [
-                      "sections/conversational-video-interface/persona/llm-tool",
-                      "sections/conversational-video-interface/persona/perception-tool"
-                    ]
-                  },
-                  "sections/conversational-video-interface/persona/stock-personas"
-                ]
-              },
-              {
-                "group": "Conversational Use Cases",
-                "pages": [
-                  "sections/conversational-video-interface/conversation/usecases/tavus-researcher",
-                  "sections/conversational-video-interface/conversation/usecases/ai-interviewer",
-                  "sections/conversational-video-interface/conversation/usecases/history-teacher",
-                  "sections/conversational-video-interface/conversation/usecases/sales-coach",
-                  "sections/conversational-video-interface/conversation/usecases/health-care",
-                  "sections/conversational-video-interface/conversation/usecases/customer-service"
-                ]
-              },
-              "sections/conversational-video-interface/language-support",
-              "sections/conversational-video-interface/interactions-protocols/overview",
-              {
-                "group": "Integrations",
-                "pages": [
-                  "sections/integrations/embedding-cvi"
-                ]
-              },
-              {
-                "group": "Third-Party Integrations",
-                "pages": [
-                  "sections/integrations/livekit",
-                  "sections/integrations/pipecat"
-                  
-                ]
-              },
-              "sections/conversational-video-interface/faq"
+              "index",
+              "platform-overview"
             ]
           },
           {
-            "group": "Replica",
-            "icon": "user-group",
+            "group": "Quick Start",
             "pages": [
-              "sections/replica/overview",
-              "sections/replica/replica-training",
-              "sections/replica/quickstart",
-              "sections/replica/stock-replicas"
+              "getting-started",
+              {
+                "group": "Make Your First API Request",
+                "pages": [
+                  "make-your-first-api-request",
+                  "query-bitcoin-utxos",
+                  "query-cardano-utxos",
+                  "query-dogecoin-utxos"
+                ]
+              },
+              {
+                "group": "Submit Your First Transaction",
+                "pages": [
+                  "submit-your-first-transaction",
+                  "submit-bitcoin-transaction",
+                  "submit-cardano-transaction",
+                  "submit-doge-transaction"
+                ]
+              },
+              "faq"
             ]
           },
           {
-            "group": "Video Generation",
-            "icon": "video",
+            "group": "Maestro Platform",
             "pages": [
-              "sections/video/overview",
-              "sections/video/quickstart",
-              "sections/video/background-customizations"
+              "blockchain-indexer",
+              "node-rpc",
+              "mempool-monitoring",
+              "event-manager",
+              "transaction-manager",
+              "market-price-feeds",
+              "managed-smart-contracts",
+              "wallet-manager",
+              "esplora-api"
             ]
-          },
+          }, 
           {
-            "group": "Lipsync",
-            "icon": "microphone",
+            "group": "Account",
             "pages": [
-              "sections/lipsync/overview",
-              "sections/lipsync/quickstart"
+              {
+                "group": "Subscriptions",
+                "pages": [
+                  "subscription",
+                  "view",
+                  "upgrade",
+                  "manage-billing"
+                ]
+              },
+              "teams",
+              "contact-us"
             ]
-          },
-          {
-            "group": "Resources",
-            "icon": "bookmark",
-            "pages": ["sections/example-projects", "sections/changelog/changelog"]
           }
         ]
       },
       {
-        "anchor": "API Reference",
+        "tab": "Bitcoin",
+        "pages": [
+          "bitcoin",
+          "bitcoin/api-usage",
+          {
+            "group": "Blockchain Indexer API",
+            "pages": [
+              "bitcoin/blockchain-indexer-api/overview",
+              {
+                "group": "Addresses",
+                "pages": [
+                  "bitcoin/blockchain-indexer-api/addresses/satoshi-activity-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/satoshi-balance-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/historical-satoshi-balance-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/brc20-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/brc20-transfer-inscriptions-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/inscriptions-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/inscription-activity-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/runes-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/rune-activity-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/rune-utxos-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/deprecated-rune-utxos-by-address-and-rune",
+                  "bitcoin/blockchain-indexer-api/addresses/address-statistics",
+                  "bitcoin/blockchain-indexer-api/addresses/transactions-by-address",
+                  "bitcoin/blockchain-indexer-api/addresses/utxos-by-address"
+                ]
+              },
+              {
+                "group": "BRC20",
+                "pages": [
+                  "bitcoin/blockchain-indexer-api/brc20/list-brc20",
+                  "bitcoin/blockchain-indexer-api/brc20/brc20-info",
+                  "bitcoin/blockchain-indexer-api/brc20/brc20-holders"
+                ]
+              },
+              {
+                "group": "Inscriptions",
+                "pages": [
+                  "bitcoin/blockchain-indexer-api/inscriptions/inscription-ids-by-collection-symbol",
+                  "bitcoin/blockchain-indexer-api/inscriptions/collection-metadata-by-collection-symbol",
+                  "bitcoin/blockchain-indexer-api/inscriptions/collection-stats-by-collection-symbol",
+                  "bitcoin/blockchain-indexer-api/inscriptions/inscription-info",
+                  "bitcoin/blockchain-indexer-api/inscriptions/activity-by-inscription",
+                  "bitcoin/blockchain-indexer-api/inscriptions/collection-metadata-by-inscription",
+                  "bitcoin/blockchain-indexer-api/inscriptions/content-by-inscription-id",
+                  "bitcoin/blockchain-indexer-api/inscriptions/token-metadata-by-inscription"
+                ]
+              },
+              {
+                "group": "Runes",
+                "pages": [
+                  "bitcoin/blockchain-indexer-api/runes/list-runes",
+                  "bitcoin/blockchain-indexer-api/runes/runes-info",
+                  "bitcoin/blockchain-indexer-api/runes/activity-by-rune",
+                  "bitcoin/blockchain-indexer-api/runes/holders-by-rune",
+                  "bitcoin/blockchain-indexer-api/runes/utxos-by-runes"
+                ]
+              },
+              {
+                "group": "Blocks",
+                "pages": [
+                  "bitcoin/blockchain-indexer-api/blocks/block-info",
+                  "bitcoin/blockchain-indexer-api/blocks/inscription-activity-by-block",
+                  "bitcoin/blockchain-indexer-api/blocks/transactions-by-block"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "bitcoin/blockchain-indexer-api/transactions/transaction-info",
+                  "bitcoin/blockchain-indexer-api/transactions/inscription-activity-by-transaction",
+                  "bitcoin/blockchain-indexer-api/transactions/transaction-info-with-metaprotocols",
+                  "bitcoin/blockchain-indexer-api/transactions/transaction-output-info"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Esplora API",
+            "pages": [
+              "bitcoin/esplora-api/overview",
+              {
+                "group": "Addresses",
+                "pages": [
+                  "bitcoin/esplora-api/addresses/address",
+                  "bitcoin/esplora-api/addresses/address-transactions",
+                  "bitcoin/esplora-api/addresses/address-transactions-chain",
+                  "bitcoin/esplora-api/addresses/address-transactions-mempool",
+                  "bitcoin/esplora-api/addresses/address-utxos"
+                ]
+              },
+              {
+                "group": "Blocks",
+                "pages": [
+                  "bitcoin/esplora-api/blocks/block",
+                  "bitcoin/esplora-api/blocks/block-header",
+                  "bitcoin/esplora-api/blocks/block-status",
+                  "bitcoin/esplora-api/blocks/get-block-transactions",
+                  "bitcoin/esplora-api/blocks/block-transaction-ids",
+                  "bitcoin/esplora-api/blocks/block-transaction-id",
+                  "bitcoin/esplora-api/blocks/block-raw",
+                  "bitcoin/esplora-api/blocks/blocks",
+                  "bitcoin/esplora-api/blocks/block-height",
+                  "bitcoin/esplora-api/blocks/block-tip-height",
+                  "bitcoin/esplora-api/blocks/block-tip-hash"
+                ]
+              },
+              {
+                "group": "Mempool",
+                "pages": [
+                  "bitcoin/esplora-api/mempool/mempool",
+                  "bitcoin/esplora-api/mempool/mempool-transaction-ids",
+                  "bitcoin/esplora-api/mempool/mempool-recent"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "bitcoin/esplora-api/transactions/transaction",
+                  "bitcoin/esplora-api/transactions/transaction-hex",
+                  "bitcoin/esplora-api/transactions/transaction-merkleblock-proof",
+                  "bitcoin/esplora-api/transactions/transaction-merkle-proof",
+                  "bitcoin/esplora-api/transactions/transaction-outspend",
+                  "bitcoin/esplora-api/transactions/transaction-outspends",
+                  "bitcoin/esplora-api/transactions/transaction-raw",
+                  "bitcoin/esplora-api/transactions/transaction-rbf-timeline",
+                  "bitcoin/esplora-api/transactions/transaction-status",
+                  "bitcoin/esplora-api/transactions/transaction-1"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Node RPC API",
+            "pages": [
+              "bitcoin/node-rpc-api/overview",
+              {
+                "group": "Blocks",
+                "pages": [
+                  "bitcoin/node-rpc-api/blocks/latest-block",
+                  "bitcoin/node-rpc-api/blocks/block-range-info",
+                  "bitcoin/node-rpc-api/blocks/recent-block-info",
+                  "bitcoin/node-rpc-api/blocks/recent-block-info-count",
+                  "bitcoin/node-rpc-api/blocks/block-info",
+                  "bitcoin/node-rpc-api/blocks/block-miner-info",
+                  "bitcoin/node-rpc-api/blocks/block-volume"
+                ]
+              },
+              {
+                "group": "General",
+                "pages": [
+                  "bitcoin/node-rpc-api/general/blockchain-info"
+                ]
+              },
+              {
+                "group": "Mempool",
+                "pages": [
+                  "bitcoin/node-rpc-api/mempool/mempool-info",
+                  "bitcoin/node-rpc-api/mempool/mempool-transactions",
+                  "bitcoin/node-rpc-api/mempool/mempool-transaction-info",
+                  "bitcoin/node-rpc-api/mempool/mempool-transaction-ancestors",
+                  "bitcoin/node-rpc-api/mempool/mempool-transaction-descendants"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "bitcoin/node-rpc-api/transactions/transaction-info-batch",
+                  "bitcoin/node-rpc-api/transactions/decode-transaction",
+                  "bitcoin/node-rpc-api/transactions/estimate-fee",
+                  "bitcoin/node-rpc-api/transactions/transaction-info-hex",
+                  "bitcoin/node-rpc-api/transactions/decode-psbt",
+                  "bitcoin/node-rpc-api/transactions/recent-transactions",
+                  "bitcoin/node-rpc-api/transactions/recent-transactions-count",
+                  "bitcoin/node-rpc-api/transactions/send-transaction",
+                  "bitcoin/node-rpc-api/transactions/transaction-info"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Mempool Monitoring API",
+            "pages": [
+              "bitcoin/mempool-monitoring-api/overview",
+              {
+                "group": "Addresses",
+                "pages": [
+                  "bitcoin/mempool-monitoring-api/addresses/satoshi-balance-by-address-mempool-aware",
+                  "bitcoin/mempool-monitoring-api/addresses/runes-by-address-mempool-aware",
+                  "bitcoin/mempool-monitoring-api/addresses/rune-utxos-by-address-mempool-aware",
+                  "bitcoin/mempool-monitoring-api/addresses/utxos-by-address-mempool-aware"
+                ]
+              },
+              {
+                "group": "Runes",
+                "pages": [
+                  "bitcoin/mempool-monitoring-api/runes/holders-by-rune-mempool-aware"
+                ]
+              },
+              {
+                "group": "General",
+                "pages": [
+                  "bitcoin/mempool-monitoring-api/general/mempool-block-fee-rates"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "bitcoin/mempool-monitoring-api/transactions/transaction-info-with-metaprotocols-mempool-aware",
+                  "bitcoin/mempool-monitoring-api/transactions/transaction-output-info-mempool-aware"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Event Manager API",
+            "pages": [
+              "bitcoin/event-manager-api/overview",
+              {
+                "group": "Logs",
+                "pages": [
+                  "bitcoin/event-manager-api/logs/user-event-logs",
+                  "bitcoin/event-manager-api/logs/event-log-info-by-id"
+                ]
+              },
+              {
+                "group": "Managers",
+                "pages": [
+                  "bitcoin/event-manager-api/managers/user-event-managers",
+                  "bitcoin/event-manager-api/managers/create-event-manager",
+                  "bitcoin/event-manager-api/managers/event-manager-info-by-id",
+                  "bitcoin/event-manager-api/managers/update-event-manager",
+                  "bitcoin/event-manager-api/managers/delete-event-manager"
+                ]
+              },
+              {
+                "group": "Triggers",
+                "pages": [
+                  "bitcoin/event-manager-api/triggers/user-event-manager-triggers",
+                  "bitcoin/event-manager-api/triggers/create-event-manager-trigger",
+                  "bitcoin/event-manager-api/triggers/event-trigger-info-by-id",
+                  "bitcoin/event-manager-api/triggers/update-event-manager-trigger",
+                  "bitcoin/event-manager-api/triggers/delete-event-manager-trigger"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Market Price API",
+            "pages": [
+              "bitcoin/market-price-api/overview",
+              {
+                "group": "Prices",
+                "pages": [
+                  "bitcoin/market-price-api/prices/btc-prices-by-timestamp",
+                  "bitcoin/market-price-api/prices/rune-prices-by-timestamp",
+                  "bitcoin/market-price-api/prices/rune-price-by-timestamp",
+                  "bitcoin/market-price-api/prices/btc-price-by-timestamp"
+                ]
+              },
+              {
+                "group": "DEX",
+                "pages": [
+                  "bitcoin/market-price-api/dex/supported-dexs",
+                  "bitcoin/market-price-api/dex/rune-ohlc-data",
+                  "bitcoin/market-price-api/dex/rune-trades-for-dex",
+                  "bitcoin/market-price-api/dex/rune-registry"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Wallet API",
+            "pages": [
+              "bitcoin/wallet-api/overview",
+              {
+                "group": "Addresses",
+                "pages": [
+                  "bitcoin/wallet-api/addresses/wallet-satoshi-activity-by-address-mempool-aware",
+                  "bitcoin/wallet-api/addresses/metaprotocol-activity-by-address",
+                  "bitcoin/wallet-api/addresses/historical-satoshi-balance-by-address",
+                  "bitcoin/wallet-api/addresses/inscription-activity-by-address-mempool-aware",
+                  "bitcoin/wallet-api/addresses/rune-activity-by-address-mempool-aware",
+                  "bitcoin/wallet-api/addresses/address-statistics-mempool-aware"
+                ]
+              }
+            ]
+          },
+          {
+            "group": " ",
+            "pages": [
+              {
+                "group": "Tutorials",
+                "pages": [
+                  "bitcoin/mcp-interact-with-bitcoin-via-an-llm",
+                  "bitcoin/maestro-market-price-api-and-tradingview-lightweight-charts-tutorial",
+                  "bitcoin/best-in-slot-migration-guide",
+                  "bitcoin/how-to-add-a-custom-index-in-maestro-symphony"
+                ]
+              },
+              "bitcoin/sdks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Cardano",
+        "pages": [
+          "cardano",
+          "cardano/api-usage",
+          {
+            "group": "Blockchain Indexer API",
+            "pages": [
+              "cardano/blockchain-indexer-api/overview",
+              {
+                "group": "Accounts",
+                "pages": [
+                  "cardano/blockchain-indexer-api/accounts/stake-account-information",
+                  "cardano/blockchain-indexer-api/accounts/stake-account-addresses",
+                  "cardano/blockchain-indexer-api/accounts/stake-account-assets",
+                  "cardano/blockchain-indexer-api/accounts/stake-account-delegation-history",
+                  "cardano/blockchain-indexer-api/accounts/stake-account-history",
+                  "cardano/blockchain-indexer-api/accounts/stake-account-rewards",
+                  "cardano/blockchain-indexer-api/accounts/stake-account-updates"
+                ]
+              },
+              {
+                "group": "Addresses",
+                "pages": [
+                  "cardano/blockchain-indexer-api/addresses/transactions-by-multiple-payment-credentials",
+                  "cardano/blockchain-indexer-api/addresses/utxos-by-multiple-payment-credentials",
+                  "cardano/blockchain-indexer-api/addresses/balance-by-payment-credential",
+                  "cardano/blockchain-indexer-api/addresses/payment-credential-transactions",
+                  "cardano/blockchain-indexer-api/addresses/utxos-by-payment-credential",
+                  "cardano/blockchain-indexer-api/addresses/utxos-by-multiple-addresses",
+                  "cardano/blockchain-indexer-api/addresses/decode-address",
+                  "cardano/blockchain-indexer-api/addresses/address-transactions",
+                  "cardano/blockchain-indexer-api/addresses/address-transaction-count",
+                  "cardano/blockchain-indexer-api/addresses/utxo-references-at-an-address",
+                  "cardano/blockchain-indexer-api/addresses/utxos-at-an-address"
+                ]
+              },
+              {
+                "group": "Assets",
+                "pages": [
+                  "cardano/blockchain-indexer-api/assets/native-asset-information",
+                  "cardano/blockchain-indexer-api/assets/accounts-of-addresses-holding-specific-asset",
+                  "cardano/blockchain-indexer-api/assets/native-asset-addresses",
+                  "cardano/blockchain-indexer-api/assets/native-asset-mints-and-burns",
+                  "cardano/blockchain-indexer-api/assets/native-asset-transactions",
+                  "cardano/blockchain-indexer-api/assets/native-asset-utxos"
+                ]
+              },
+              {
+                "group": "Blocks",
+                "pages": [
+                  "cardano/blockchain-indexer-api/blocks/latest-block-information",
+                  "cardano/blockchain-indexer-api/blocks/block-information"
+                ]
+              },
+              {
+                "group": "General",
+                "pages": [
+                  "cardano/blockchain-indexer-api/general/chain-tip",
+                  "cardano/blockchain-indexer-api/general/era-summary",
+                  "cardano/blockchain-indexer-api/general/protocol-parameters",
+                  "cardano/blockchain-indexer-api/general/blockchain-system-start"
+                ]
+              },
+              {
+                "group": "Datums",
+                "pages": [
+                  "cardano/blockchain-indexer-api/datums/datums-by-hashes",
+                  "cardano/blockchain-indexer-api/datums/datum-by-datum-hash"
+                ]
+              },
+              {
+                "group": "Ecosystem",
+                "pages": [
+                  "cardano/blockchain-indexer-api/ecosystem/resolve-ada-handle"
+                ]
+              },
+              {
+                "group": "Epochs",
+                "pages": [
+                  "cardano/blockchain-indexer-api/epochs/current-epoch-details",
+                  "cardano/blockchain-indexer-api/epochs/specific-epoch-details"
+                ]
+              },
+              {
+                "group": "Asset Policy",
+                "pages": [
+                  "cardano/blockchain-indexer-api/asset-policy/information-about-a-policy-of-native-assets",
+                  "cardano/blockchain-indexer-api/asset-policy/accounts-of-addresses-holding-assets-of-specific-policy",
+                  "cardano/blockchain-indexer-api/asset-policy/addresses-holding-assets-of-specific-policy",
+                  "cardano/blockchain-indexer-api/asset-policy/list-assets-of-a-policy",
+                  "cardano/blockchain-indexer-api/asset-policy/transactions-minting-or-burning-assets-of-policy",
+                  "cardano/blockchain-indexer-api/asset-policy/transactions-involving-assets-of-policy",
+                  "cardano/blockchain-indexer-api/asset-policy/utxos-containing-assets-of-specific-policy"
+                ]
+              },
+              {
+                "group": "Pools",
+                "pages": [
+                  "cardano/blockchain-indexer-api/pools/list-registered-stake-pools",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-blocks",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-delegators",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-delegator-history",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-history",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-information",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-metadata",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-relays",
+                  "cardano/blockchain-indexer-api/pools/stake-pool-updates"
+                ]
+              },
+              {
+                "group": "Scripts",
+                "pages": [
+                  "cardano/blockchain-indexer-api/scripts/script-by-script-hash"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "cardano/blockchain-indexer-api/transactions/evaluate-redeemers-of-a-transaction",
+                  "cardano/blockchain-indexer-api/transactions/transaction-outputs-by-output-references",
+                  "cardano/blockchain-indexer-api/transactions/transaction-details",
+                  "cardano/blockchain-indexer-api/transactions/cbor-bytes-of-a-transaction",
+                  "cardano/blockchain-indexer-api/transactions/address-by-transaction-output-reference",
+                  "cardano/blockchain-indexer-api/transactions/transaction-output-by-output-reference"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Transaction Manager API",
+            "pages": [
+              "cardano/transaction-manager-api/overview",
+              {
+                "group": "Transactions",
+                "pages": [
+                  "cardano/transaction-manager-api/transactions/submit-a-transaction",
+                  "cardano/transaction-manager-api/transactions/get-transaction-state",
+                  "cardano/transaction-manager-api/transactions/transaction-history"
+                ]
+              },
+              {
+                "group": "Transaction Manager",
+                "pages": [
+                  "cardano/transaction-manager-api/transaction-manager/turbo-submit-transaction"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "cardano/transaction-manager-api/webhooks/create-a-webhook"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Managed Contracts API",
+            "pages": [
+              "cardano/managed-contracts-api/overview",
+              {
+                "group": "Vesting",
+                "pages": [
+                  "cardano/managed-contracts-api/vesting/lock-assets",
+                  "cardano/managed-contracts-api/vesting/collect-assets",
+                  "cardano/managed-contracts-api/vesting/state-of-vesting-assets"
+                ]
+              },
+              {
+                "group": "Direct Swap",
+                "pages": [
+                  "cardano/managed-contracts-api/direct-swap/create-an-offer",
+                  "cardano/managed-contracts-api/direct-swap/cancel-an-offer",
+                  "cardano/managed-contracts-api/direct-swap/get-all-offers",
+                  "cardano/managed-contracts-api/direct-swap/get-users-offers",
+                  "cardano/managed-contracts-api/direct-swap/fill-an-offer"
+                ]
+              },
+              {
+                "group": "Single Asset Staking",
+                "pages": [
+                  "cardano/managed-contracts-api/single-asset-staking/admin--create-the-config-for-a-new-campaign",
+                  "cardano/managed-contracts-api/single-asset-staking/admin--initialize-the-staking-for-a-new-campaign",
+                  "cardano/managed-contracts-api/single-asset-staking/user--staking-token-to-a-campaign",
+                  "cardano/managed-contracts-api/single-asset-staking/user--updating-stake-on-a-campaign",
+                  "cardano/managed-contracts-api/single-asset-staking/user--withdrawing-stake-from-a-campaign",
+                  "cardano/managed-contracts-api/single-asset-staking/admin--process-rewards-for-a-campaign",
+                  "cardano/managed-contracts-api/single-asset-staking/get-the-state-of-a-campaign"
+                ]
+              },
+              {
+                "group": "Subscription",
+                "pages": [
+                  "cardano/managed-contracts-api/subscription/create-a-subscription-service",
+                  "cardano/managed-contracts-api/subscription/create-a-user-account",
+                  "cardano/managed-contracts-api/subscription/initiate-a-subscription",
+                  "cardano/managed-contracts-api/subscription/unsubscribe",
+                  "cardano/managed-contracts-api/subscription/withdraw-subscription-fees"
+                ]
+              },
+              {
+                "group": "Multisig",
+                "pages": [
+                  "cardano/managed-contracts-api/multisig/initiate-a-multisig-contract",
+                  "cardano/managed-contracts-api/multisig/update-a-multisig-contract",
+                  "cardano/managed-contracts-api/multisig/end-a-multisig-contract"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Market Price API",
+            "pages": [
+              "cardano/market-price-api/overview",
+              {
+                "group": "DEX",
+                "pages": [
+                  "cardano/market-price-api/dex/dexs",
+                  "cardano/market-price-api/dex/dex-and-pair-ohlc",
+                  "cardano/market-price-api/dex/dex-and-pair-trades",
+                  "cardano/market-price-api/dex/dex-pairs"
+                ]
+              }
+            ]
+          },
+          {
+            "group": " ",
+            "pages": [
+              {
+                "group": "Tutorials",
+                "pages": [
+                  "cardano/post-a-turbo-transaction",
+                  "cardano/monitor-transactions",
+                  "cardano/get-transaction-output-by-reference"
+                ]
+              },
+              "cardano/sdks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Dogecoin",
+        "pages": [
+          "dogecoin",
+          "dogecoin/api-usage",
+          {
+            "group": "Blockchain Indexer API",
+            "pages": [
+              "dogecoin/blockchain-indexer-api/overview",
+              {
+                "group": "Addresses",
+                "pages": [
+                  "dogecoin/blockchain-indexer-api/addresses/total-balance-by-address",
+                  "dogecoin/blockchain-indexer-api/addresses/drc20-by-address",
+                  "dogecoin/blockchain-indexer-api/addresses/dunes-by-address",
+                  "dogecoin/blockchain-indexer-api/addresses/dune-utxos-by-address-and-dune",
+                  "dogecoin/blockchain-indexer-api/addresses/inscriptions-by-address",
+                  "dogecoin/blockchain-indexer-api/addresses/drc20-transfer-inscriptions-by-address",
+                  "dogecoin/blockchain-indexer-api/addresses/transactions-by-address",
+                  "dogecoin/blockchain-indexer-api/addresses/utxos-by-address"
+                ]
+              },
+              {
+                "group": "DRC20",
+                "pages": [
+                  "dogecoin/blockchain-indexer-api/drc20/list-drc20",
+                  "dogecoin/blockchain-indexer-api/drc20/drc20-info",
+                  "dogecoin/blockchain-indexer-api/drc20/drc20-holders"
+                ]
+              },
+              {
+                "group": "Dunes",
+                "pages": [
+                  "dogecoin/blockchain-indexer-api/dunes/list-dunes",
+                  "dogecoin/blockchain-indexer-api/dunes/dunes-info",
+                  "dogecoin/blockchain-indexer-api/dunes/holders-by-dune",
+                  "dogecoin/blockchain-indexer-api/dunes/utxos-by-dunes"
+                ]
+              },
+              {
+                "group": "Inscriptions",
+                "pages": [
+                  "dogecoin/blockchain-indexer-api/inscriptions/inscription-info",
+                  "dogecoin/blockchain-indexer-api/inscriptions/content-by-inscription-id"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Node RPC API",
+            "pages": [
+              "dogecoin/node-rpc-api/overview",
+              {
+                "group": "Blocks",
+                "pages": [
+                  "dogecoin/node-rpc-api/blocks/latest-block",
+                  "dogecoin/node-rpc-api/blocks/block-range-info",
+                  "dogecoin/node-rpc-api/blocks/recent-block-info",
+                  "dogecoin/node-rpc-api/blocks/block-info"
+                ]
+              },
+              {
+                "group": "General",
+                "pages": [
+                  "dogecoin/node-rpc-api/general/blockchain-info"
+                ]
+              },
+              {
+                "group": "Mempool",
+                "pages": [
+                  "dogecoin/node-rpc-api/mempool/mempool-info",
+                  "dogecoin/node-rpc-api/mempool/mempool-transactions",
+                  "dogecoin/node-rpc-api/mempool/mempool-transaction-info",
+                  "dogecoin/node-rpc-api/mempool/mempool-transaction-ancestors",
+                  "dogecoin/node-rpc-api/mempool/mempool-transaction-descendants"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "dogecoin/node-rpc-api/transactions/send-transaction",
+                  "dogecoin/node-rpc-api/transactions/transaction-info"
+                ]
+              }
+            ]
+          },
+          {
+            "group": " ",
+            "pages": [
+              "dogecoin/sdks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Arch Network",
+        "pages": [
+          "arch-network",
+          "arch-network/api-usage",
+          {
+            "group": "Node RPC API",
+            "pages": [
+              "arch-network/node-rpc-api/overview",
+              {
+                "group": "Accounts",
+                "pages": [
+                  "arch-network/node-rpc-api/accounts/account-address-hex-by-pubkey",
+                  "arch-network/node-rpc-api/accounts/account-info-by-pubkey",
+                  "arch-network/node-rpc-api/accounts/account-info-by-address-hex",
+                  "arch-network/node-rpc-api/accounts/account-info-hex-by-address-hex"
+                ]
+              },
+              {
+                "group": "Blocks",
+                "pages": [
+                  "arch-network/node-rpc-api/blocks/block-count",
+                  "arch-network/node-rpc-api/blocks/latest-block-info",
+                  "arch-network/node-rpc-api/blocks/latest-block-hash",
+                  "arch-network/node-rpc-api/blocks/block-range-info",
+                  "arch-network/node-rpc-api/blocks/recent-block-info",
+                  "arch-network/node-rpc-api/blocks/recent-block-info-count",
+                  "arch-network/node-rpc-api/blocks/block-info"
+                ]
+              },
+              {
+                "group": "Programs",
+                "pages": [
+                  "arch-network/node-rpc-api/programs/program-accounts"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "pages": [
+                  "arch-network/node-rpc-api/transactions/recent-transactions",
+                  "arch-network/node-rpc-api/transactions/recent-transactions-hex",
+                  "arch-network/node-rpc-api/transactions/recent-transactions-count",
+                  "arch-network/node-rpc-api/transactions/recent-transactions-hex-1",
+                  "arch-network/node-rpc-api/transactions/send-transaction",
+                  "arch-network/node-rpc-api/transactions/send-multiple-transactions",
+                  "arch-network/node-rpc-api/transactions/processed-transaction-info-by-hash",
+                  "arch-network/node-rpc-api/transactions/processed-transaction-info-hex-by-transaction-hash"
+                ]
+              }
+            ]
+          },
+          {
+            "group": " ",
+            "pages": [
+              "arch-network/tutorials-coming-soon",
+              "arch-network/sdks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Midnight",
         "groups": [
           {
-            "group": "Replicas",
+            "group": " ",
             "pages": [
-              "api-reference/phoenix-replica-model/create-replica",
-              "api-reference/phoenix-replica-model/get-replica",
-              "api-reference/phoenix-replica-model/get-replicas",
-              "api-reference/phoenix-replica-model/delete-replica",
-              "api-reference/phoenix-replica-model/patch-replica-name"
+              "midnight",
+              "midnight/api-usage",
+              "midnight/api-reference",
+              "midnight/tutorials-coming-soon",
+              "midnight/sdks"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "groups": [
           {
-            "group": "Conversational Video Interface",
+            "group": " ",
             "pages": [
-              "api-reference/conversations/create-conversation",
-              "api-reference/conversations/get-conversation",
-              "api-reference/conversations/get-conversations",
-              "api-reference/conversations/end-conversation",
-              "api-reference/conversations/delete-conversation"
-            ]
-          },
-          {
-            "group": "Replica Personas",
-            "pages": [
-              "api-reference/personas/create-persona",
-              "api-reference/personas/get-persona",
-              "api-reference/personas/get-personas",
-              "api-reference/personas/patch-persona",
-              "api-reference/personas/delete-persona"
-            ]
-          },
-          {
-            "group": "Videos",
-            "pages": [
-              "api-reference/video-request/create-video",
-              "api-reference/video-request/get-video",
-              "api-reference/video-request/get-videos",
-              "api-reference/video-request/delete-video",
-              "api-reference/video-request/patch-video-name"
-            ]
-          },
-          {
-            "group": "Lipsync",
-            "pages": [
-              "api-reference/lipsync/create-lipsync",
-              "api-reference/lipsync/get-lipsync",
-              "api-reference/lipsync/get-lipsync-list",
-              "api-reference/lipsync/delete-lipsync"
-            ]
-          },
-          {
-            "group": "Speech",
-            "pages": [
-              "api-reference/speech/create-speech",
-              "api-reference/speech/get-speech",
-              "api-reference/speech/get-speech-list",
-              "api-reference/speech/delete-speech",
-              "api-reference/speech/patch-speech-name"
-            ]
-          },
-          {
-            "group": "Interactions Protocol",
-            "pages": [
-              "sections/event-schemas/conversation-echo",
-              "sections/event-schemas/conversation-respond",
-              "sections/event-schemas/conversation-sensitivity",
-              "sections/event-schemas/conversation-interrupt",
-              "sections/event-schemas/conversation-replica-interrupted",
-              "sections/event-schemas/conversation-overwrite-context",
-              "sections/event-schemas/conversation-utterance",
-              "sections/event-schemas/conversation-toolcall",
-              "sections/event-schemas/conversation-replica-started-stopped-speaking",
-              "sections/event-schemas/conversation-user-started-stopped-speaking",
-              "sections/event-schemas/conversation-perception-tool-call",
-              "sections/event-schemas/conversation-perception-analysis"
+              "bitcoin/changelog",
+              "cardano/changelog",
+              "dogecoin/changelog",
+              "arch-network/changelog"
             ]
           }
         ]
@@ -218,14 +830,19 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Community",
-          "href": "https://discord.gg/5Y9Er6WNN5",
-          "icon": "discord"
+          "anchor": "GitHub",
+          "href": "https://github.com/maestro-org",
+          "icon": "github"
         },
         {
-          "anchor": "Status",
-          "href": "https://status.tavus.io",
-          "icon": "tower-broadcast"
+          "anchor": "Blog",
+          "href": "https://www.gomaestro.org/blog",
+          "icon": "newspaper"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://discord.gg/ES2rDhBJt3",
+          "icon": "discord"
         }
       ]
     }
@@ -237,28 +854,22 @@
   "navbar": {
     "links": [
       {
-        "label": "Login",
-        "href": "https://platform.tavus.io"
-      },
-      {
-        "label": "Account Help",
-        "href": "https://help.tavus.io/"
-      },
-      {
-        "label": "Get Support",
-        "href": "mailto:developer-support@tavus.io"
+        "label": "Support",
+        "href": "mailto:support@gomaestro.org"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://platform.tavus.io"
+      "href": "https://dashboard.gomaestro.org/signup"
     }
   },
   "footer": {
     "socials": {
-      "linkedin": "https://www.linkedin.com/company/tavus-io/",
-      "discord": "https://discord.gg/5Y9Er6WNN5"
+      "discord": "https://discord.gg/ES2rDhBJt3",
+      "twitter": "https://twitter.com/GoMaestroOrg",
+      "github": "https://github.com/maestro-org",
+      "telegram": "https://t.me/+WsD8BXKBggw5ZmU5"
     }
   }
 }

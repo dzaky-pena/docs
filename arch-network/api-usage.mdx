@@ -1,0 +1,147 @@
+---
+title: API Usage
+---
+
+# Authentication
+
+You will need an `api-key` to access the Maestro API. You can obtain this key from the Maestro dApp Platform Dashboard.
+
+## Examples
+
+### GET Request
+
+Example GET request for retrieving information about the latest block :
+
+```sh Curl
+curl -X GET \
+    -H "api-key: <your_project_api_key>" \
+    https://arch-testnet.gomaestro-api.org/v0/rpc/block/latest
+```
+
+### POST Request
+
+Example request for submitting a transaction:
+
+```sh Curl
+curl -X POST \
+    -H "Content-Type: application/cbor" \
+    -H "api-key: <your_project_api_key>" \
+    --data @tx.signed \
+    https://arch-testnet.gomaestro-api.org/v0/rpc/transaction/send
+```
+
+***
+
+# Security
+
+<Danger>
+    To ensure the security of your API usage, follow these best practices:
+
+    - **Keep your API key private**: Never share it publicly (e.g., on GitHub, client-side code).
+    - **Prevent unauthorized usage**: Loss or misuse of your API key can result in the overuse of your account's available credits.
+    - **Secure your API key**: Implement proper methods for storing and accessing your `api-key`, especially in production environments.
+</Danger>
+
+***
+
+# Cursor-based Pagination
+
+Some Maestro endpoints use **Cursor-based Pagination to break large datasets into smaller, more manageable responses.** This method is particularly relevant when returning all the data in a single response would be inefficient or slow.
+
+- **Improved data integrity and accuracy** when fetching multiple pages.
+- **Prevents duplicates**, even when new blocks are processed between queries.
+- **Optimized for infinite scroll**, enabling a smooth user experience by loading content as the user scrolls.
+
+<Warning>
+    When using this method, responses will include a `next_cursor` string. This value should be passed as the `cursor` parameter in your next request to retrieve the next page of results.
+</Warning>
+
+## Example
+
+- **Initial Response**: When you make an initial API call, the response might include a `"next_cursor": "AAAAAALfeKF8btdzaVvkGaetSS7e1AAF"`. This indicates that there are more results to retrieve.
+- **Using** `next_cursor`: To get the next page of data, you need to include the `next_cursor` value in your next API request by adding it as a query parameter (`cursor`).
+- **Modifying the Query**: Append the cursor value to your API request URL, like this:
+
+```none Text
+?cursor=AAAAAALfeKF8btdzaVvkGaetSS7e1AAF
+```
+
+- **Result**: The API will return the next set of results when this value is provided.
+- **End of Data:** If the response includes `"next_cursor": null`, the requested dataset's end has been reached.
+
+**Other relevant query parameters are:**
+
+| Parameter | Default | Description                                                                                                                                                    |
+| :-------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `count`   | `100`   | Defines the maximum number of results per pagination page                                                                                                      |
+| `order`   | `asc`   | Specifies the sort order of the results. Acceptable values are `asc` (ascending) or `desc` (descending). This option is available only for specific endpoints. |
+
+**Example**
+
+```sh Curl
+curl -L -X GET 'https://mainnet.gomaestro-api.org/v1/policy/f0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a/utxos?cursor=AAAAAALfeKF8btdzaVvkGaetSS7e1AAF' \
+-H 'Accept: application/json' \
+-H 'api-key: your-api-key'
+```
+
+<Note>
+    Available [**Services & Networks**](https://documentation.gomaestro.org/) will include further details for a particular endpoint.   
+</Note>
+
+
+***
+
+# Computer Credits
+
+Maestro uses **Compute Credits** to measure the computational resources consumed by your applications on its platform, similar to traditional cloud providers like Google Cloud or AWS. The number of credits assigned to each operation or method is based on the global average duration of that process, **taking into account factors like complexity and computational intensity.**
+
+Learn more about how Compute Credits are allocated by exploring the **Subscription breakdown \[insert link].**
+
+Compute Credits provide a **fair, usage-based pricing model**, meaning you only pay for the computational resources your application actually uses, making it both **cost-efficient** and **flexible**.
+
+***
+
+# Request Limits
+
+Maestro enforces two types of API rate limits:
+
+- **Per day**: a set amount of credits consumed per day based on your [subscription](https://www.gomaestro.org/pricing) plan.
+- **Per second**: a set amount of requests per second based on your [subscription](https://www.gomaestro.org/pricing) plan.
+
+*For example, the ****Artist plan**** supports up to 10 requests per second.*
+
+<Note>
+    For more details on available packages or to upgrade your plan, refer to the [Pricing page](https://www.gomaestro.org/pricing).[ ](https://www.gomaestro.org/pricing)If your organization needs higher limits, [contact us](mailto\:info@gomaestro.org) to discuss **Enterprise solutions**.
+</Note>
+
+***
+
+# Response Headers
+
+Maestro includes the following headers in API responses to help manage usage:
+
+| Header                           | Description                                            |
+| :------------------------------- | :----------------------------------------------------- |
+| X-RateLimit-Limit-Second         | Maximum allowed requests per second.                   |
+| **X-RateLimit-Remaining-Second** | **Remaining allowed requests for the current second.** |
+| X-Maestro-Credits-Limit          | Total allowed credits for the day.                     |
+| **X-Maestro-Credits-Remaining**  | **Remaining credits for the day.**                     |
+
+<Warning>
+    Be sure to monitor these values (in **bold**) and adjust your request rate accordingly to avoid hitting rate limits.
+</Warning>
+
+***
+
+# Errors
+
+Maestro follows standard HTTP response codes to indicate the success or failure of API requests:
+
+| 2xx | Success                                                      |
+| --- | ------------------------------------------------------------ |
+| 4xx | Client-side errors, such as missing or incorrect parameters. |
+| 5xx | Server-side errors with Maestro.                             |
+
+Refer to the [API Reference](./api-overview.md) or detailed response codes for each endpoint.&#x20;
+
+***

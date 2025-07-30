@@ -1,0 +1,158 @@
+---
+title: Query Bitcoin UTxOs
+---
+
+<Note>
+**Get UTxO details on Bitcoin**
+
+In this guide, you will learn to query Bitcoin and extract UTxO information by leveraging the [UTxOs by Address](https://docs.gomaestro.org/bitcoin/utxos-by-address) endpoint.
+</Note>
+
+## Prerequisites
+
+Before submitting an API request, ensure you have completed the following:
+
+- [Create an Account](https://docs.gomaestro.org/getting-started#)
+- [Create a Project](https://docs.gomaestro.org/getting-started#)
+  - `Project Name`: \<Your Project Name>
+  - `Blockchain`: Bitcoin
+  - `Network`: Testnet
+
+<Frame>
+![](https://open.gitbook.com/~gitbook/image?url=https%3A%2F%2F1952730968-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FmUJH89F0DES8LMOQR0oZ%252Fuploads%252FqWEqpvP9fYIxyesKuTUS%252Fimage.png%3Falt%3Dmedia%26token%3D2f5186f2-fa3f-42c4-8c01-4828502e2b93\&width=768\&dpr=4\&quality=100\&sign=878d9488\&sv=1)
+</Frame>
+
+## Steps to Submit an API Request
+
+The API allows applications to retrieve a list of all UTxOs that are located at a specific address or controlled by a particular script (script pubkey).
+
+In this example, we will use the `Bitcoin Testnet` as the selected network for our project.
+
+***
+
+### 1. Select the Network
+
+- Ensure your project is configured to use `Bitcoin Testnet`.
+
+***
+
+### 2. Retrieve Transaction Output
+
+- Use the following endpoint to get a list of all UTxOs that reside at the specified Bitcoin address or script pubkey:
+
+```
+/addresses/\:address/utxos
+```
+
+***
+
+### 3. Specify Path Parameters
+
+- Include the required path parameters in your request:
+
+| Parameter | Data Type | Description                                       | Required |
+| :-------- | :-------- | :------------------------------------------------ | :------- |
+| `address` | String    | The Bitcoin address or hex-encoded script pubkey. | yes      |
+
+***
+
+### 4. Specify Query Parameters (Optional)
+
+- Include **optional** query parameters as needed:
+
+| Parameter               | Data Type | Description                                                                                    | Required |
+| :---------------------- | :-------- | :--------------------------------------------------------------------------------------------- | :------- |
+| `filter_dust`           | Boolean   | Ignore UTxOs containing less than 100,000 sats.                                                | no       |
+| `filter_dust_threshold` | Integer   | Ignore UTxOs containing less than the specified number of satoshis.                            | no       |
+| `count`                 | any       | Maximum number of results per page.                                                            | no       |
+| `order`                 | any       | The order in which the results are sorted (by height at which UTxO was produced).              | no       |
+| `from`                  | int64     | Return only UTxOs created on or **after** a specific height.                                   | no       |
+| `to`                    | int64     | Return only UTxOs created on or **before** a specific height.                                  | no       |
+| `cursor`                | String    | Pagination cursor string; use the cursor included in a page of results to fetch the next page. | no       |
+
+***
+
+### 5. Send the API Request
+
+- Use cURL or your preferred tool to send the API request:
+
+For this example, we will use:
+
+- `address`: **bc1qh62wlr6cv349jg2ltpfe6dgrjt585gzhlmecdu**
+- `filter_dust`: **true**
+- `order`: **desc**
+
+qfkWFyfdd8WZIxrXZTCgzRqZyphMA0hk
+
+```sh Curl
+curl -X GET \
+-H "api-key: <your_project_api_key>" \
+-H "Accept: application/json" \
+"https://xbt-testnet.gomaestro-api.org/v0/addresses/tb1qphcdyah2e4vtpxn56hsz3p6kapg90pl4x525kc/utxos?filter_dust=true&order=desc"
+```
+
+***
+
+### 6. Review the Response
+
+The API will return a response like the following:
+
+```json JSON
+{
+    "data": [{
+        "txid": "caff433f77a1458696280be82a9bdb7298260e5d85b81e7a77a762c47bbb89c2",
+        "vout": 1,
+        "address": "tb1qphcdyah2e4vtpxn56hsz3p6kapg90pl4x525kc",
+        "script_pubkey": "00140df0d276eacd58b09a74d5e0288756e8505787f5",
+        "satoshis": "9813110",
+        "confirmations": 186347,
+        "height": 2815507,
+        "runes": [],
+        "inscriptions": []
+    }, {
+        "txid": "9e46003cb9ae4906a81b4be663c0b3ea5acb8947857bbc20594e9d76144be6ff",
+        "vout": 2,
+        "address": "tb1qphcdyah2e4vtpxn56hsz3p6kapg90pl4x525kc",
+        "script_pubkey": "00140df0d276eacd58b09a74d5e0288756e8505787f5",
+        "satoshis": "980362",
+        "confirmations": 186373,
+        "height": 2815481,
+        "runes": [],
+        "inscriptions": []
+    }],
+    "last_updated": {
+        "block_hash": "000000000538766058d37b6ca5e2cd6d313aed48f16da2633eceec75a417e4ea",
+        "block_height": 3001854
+    },
+    "next_cursor": null
+}
+```
+
+***
+
+### 7. Understanding the Response
+
+| Term            | Definition                                                                                             |
+| :-------------- | :----------------------------------------------------------------------------------------------------- |
+| `txid`          | The transaction ID where the UTXO was created.                                                         |
+| `vout`          | The index of the output in the transaction (`txid`).                                                   |
+| `address`       | The Bitcoin address that received the UTXO.                                                            |
+| `script_pubkey` | The script public key associated with the UTXO, usually in hex format.                                 |
+| `satoshis`      | The amount of satoshis (smallest unit of Bitcoin) in the UTXO.                                         |
+| `confirmations` | The number of confirmations that the UTXO has received on the blockchain.                              |
+| `height`        | The block height at which the UTXO was created.                                                        |
+| `runes`         | Additional data related to runes, if any (empty in this response).                                     |
+| `inscriptions`  | Additional data related to inscriptions, if any (empty in this response).                              |
+| `last_updated`  | Information about the last block update related to this request.                                       |
+| `block_hash`    | The hash of the last block where the UTXOs were updated or retrieved.                                  |
+| `block_height`  | The height of the last block where the UTXOs were updated or retrieved.                                |
+| `next_cursor`   | A cursor for pagination to fetch the next page of results, if applicable (`null `if no further pages). |
+
+***
+
+<Tip>
+**Next Steps**
+
+Congrats! Now that you've made your API request, let's [Submit Your First Transaction](./../submit-your-first-transaction/README.md).
+</Tip>
+

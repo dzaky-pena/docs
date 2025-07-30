@@ -1,0 +1,60 @@
+---
+title: Esplora API
+---
+
+The Esplora API is a RESTful service designed by [Blockstream](https://github.com/Blockstream/esplora) that provides a lightweight and efficient HTTP interface for accessing Bitcoin data including blocks, transactions and addresses.
+
+Esplora is designed for performance and ease of integration, making it ideal for explorers, wallets, and backend services that need fast blockchain reads without running a full node RPC server.
+
+---
+
+The Maestro Esplora API offers a forked [Mempool.Space](https://github.com/mempool/mempool) instance, with support for both Bitcoin mainnet and Bitcoin testnet4.
+
+Repo: https://github.com/maestro-org/mempool
+
+### Service Availability
+
+The Esplora service is available on the following blockchains:
+
+| Service     | Bitcoin                                                                                                | Cardano | Dogecoin |
+| :---------- | :----------------------------------------------------------------------------------------------------- | :------ | :------- |
+| **Esplora** | [API Reference](https://www.postman.com/go-maestro/maestro-api/collection/tbetkqq/bitcoin-esplora-api) | -       | -        |
+
+### Key Features
+
+#### Transactions
+
+-   Fetch transaction details, raw hex, and status.
+-   Retrieve merkle proofs (both `bitcoind` and `Electrum` style).
+-   Broadcast raw transactions.
+-   Check spending status of outputs.
+
+#### Addresses & Scripthashes
+
+-   Lookup balances and stats for addresses and scripthashes.
+-   View confirmed and mempool transaction history.
+-   Fetch associated UTXOs.
+-   Search by address prefix.
+
+#### Blocks
+
+-   Get full block details including headers, transactions, txids.
+-   Access block metadata like height, weight, merkle root.
+-   Fetch block status and raw binary representation.
+
+#### Mempool
+
+-   View mempool stats: total count, vsize, fees.
+-   Get full mempool txid list and most recent entries.
+-   Access fee-rate distribution histogram.
+
+#### Fee Estimates
+
+-   Retrieve estimated fee rates for confirmation targets (1-1008 blocks).
+
+### Use Cases
+
+-   Build block explorers and analytics dashboards.
+-   Monitor transactions and fee trends.
+-   Query UTXOs and spending data for wallets.
+-   Implement mempool-aware transaction trackers.

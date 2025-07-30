@@ -1,0 +1,61 @@
+---
+title: Wallet Manager
+---
+
+This service provides granular insights into address-level activity, including balance changes and interactions with emerging metaprotocols, if applicable, depending on the chain. This API is ideal for developers building explorers, wallets, indexers, or analytics tools that need to surface meaningful, filtered transaction data tied to a specific address.
+
+Whether you're tracking basic balance deltas or metaprotocol token flows, the Wallet API gives you a unified, flexible interface for querying relevant blockchain events with pagination and fine-grained filters.
+
+## Key Features
+
+-   **Activity Tracking:** Understand balance increases, decreases, and self-transfers with timestamped accuracy to support historical analysis and auditing.
+-   **Bitcoin**
+    -   **Satoshi History:** Returns the historical satoshi balances, itemized by block and including USD price.
+    -   **Inscription Insight:** Monitor Ordinals transactions, filtered by inscription ID, activity type (send/receive), or self-transfer logic to reduce noise from spam or internal moves.
+    -   **Rune Transaction Logging:** Track rune minting, transfers, etchings, and balance changes for a given address, including support for filtering by specific rune.
+    -   **Unified Metaprotocol View:** Fetch combined activity across satoshis, inscriptions, and runes in a single request to power holistic user or address histories.
+
+# Service Availability
+
+The Wallet API service is available on the following blockchains:
+
+| Service        | Bitcoin                                                                                               | Cardano | Dogecoin | Arch |
+| -------------- | ----------------------------------------------------------------------------------------------------- | ------- | -------- | ---- |
+| **Wallet API** | [API Reference](https://www.postman.com/go-maestro/maestro-api/collection/1ohcszz/bitcoin-wallet-api) | -       | -        | -    |
+
+## Benefits for Developers:
+
+Developers gain the ability to surface address-level insights without having to manually parse raw blockchain data. The Wallet API simplifies historical activity analysis, enables protocol-specific filtering, and lets developers build UX-enhancing features like transaction history views, asset trackers, and real-time alerts for wallet activity without managing indexing infrastructure.
+
+### Use Cases
+
+-   Displaying full transaction history for an address
+-   Filtering specific activity types (e.g., only inscriptions received or runes decreased)
+-   Building dashboards holders of specific assets
+-   Monitoring wallet interactions with native and metaprotocol layers (if applicable)
+
+### Endpoint Categories
+
+**Activity Tracking**
+
+Provides a unified and filterable view of all address-level activity, including satoshi balance changes, Ordinals (inscription) movements, and Rune-related events like etching, minting, and transfers—enabling comprehensive insight into asset flows across Bitcoin and metaprotocol layers.
+
+**Satoshi History**
+
+Query the historical satoshi balance for a specific address over time, allowing you to understand address usage patterns, time-based changes in holdings, and to reconstruct past wallet states.
+
+**Inscriptions Management**
+
+Fetch inscriptions associated with a wallet or address, including metadata like inscription ID, type, and origin. Useful for tracking Ordinals-based NFTs and file inscriptions on Bitcoin.
+
+**Rune Tracking**
+
+Monitor Rune balances and related activity tied to your wallet, including mints, transfers, and etchings. Supports granular filtering by specific Rune ID or asset name.
+
+**Transaction & UTXO Insight**
+
+Delivers detailed, mempool-aware views of confirmed and unconfirmed transactions and UTXO sets per address. Supports batch queries and enables tracking of spendable outputs in real time, including upcoming blocks.
+
+**Asset Holdings**
+
+Provides a snapshot of current asset ownership for UTXOs, Runes, and Inscriptions (if applicable). Supports batch queries and reflects pending mempool updates, enabling dynamic portfolio and balance views across native and metaprotocol assets.

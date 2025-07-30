@@ -1,0 +1,126 @@
+---
+title: Transaction Manager
+---
+
+Transactions are at the center of all interactions on the blockchain. They are responsible for defining the specific ledger state transitions between two consecutive blocks (ie. UTxOs both consumed and created at an address). As a dApp developer, tracking individual states of a transaction is important and complex. A transaction can be `pending`in a mempool, `onchain`in a block, or `rolledback `from a block. Capturing these state transitions in real-time is challenging and can lead to corrupted data in your application.
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-ntwZnCf0z4vLpqqDh56iG-20241011-054743.gif)
+</Frame>
+
+***
+
+# Service Availability
+
+The Transaction Manager service is available on the following blockchains:
+
+| Service                 | Bitcoin       | Cardano                                                           | Dogecoin      |
+| :---------------------- | :------------ | :---------------------------------------------------------------- | :------------ |
+| **Transaction Manager** | *Coming Soon* | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/v95q80t/cardano-transaction-manager-api) | *Coming Soon* |
+
+***
+
+# Possible Transaction States
+
+| **State**      | **Description**                                                                      |
+| :------------- | :----------------------------------------------------------------------------------- |
+| **Rejected**   | Rejected by the block producer due to an invalid transaction.                        |
+| **Pending**    | Transaction successfully submitted and waiting in a mempool to be accepted on-chain. |
+| **Failed**     | Communication to the node has failed.                                                |
+| **Onchain**    | Transaction is part of a minted block.                                               |
+| **Rolledback** | Transaction has been removed from the chain due to a network rollback or reorg       |
+
+***
+
+# Transaction Monitoring & Webhook Notification System
+
+**Maestro’s Transaction Manager is a state-of-the-art tool that abstracts away the complexity of managing blockchain transaction states.** It provides a transaction monitoring dashboard and webhook notification system to track all transactions submitted with Maestro. This provides applications with the following benefits:
+
+## 1. On-submit transaction information[​](hhttps://www.postman.com/go-maestro/maestro-api/documentation/v95q80t/cardano-transaction-manager-api)
+
+- **Automatic Retries**: Transactions that fail due to network issues are automatically resubmitted.
+- **Rejection Error Parsing**: Transactions rejected by the node will return specific error messages, such as missing UTxOs or malformed transaction bodies.
+- **Pending Transaction State**: Successfully submitted transactions are classified as `Pending` when entered into the mempool.
+
+## 2. On-chain webhook notifications[​](https://www.postman.com/go-maestro/maestro-api/documentation/v95q80t/cardano-transaction-manager-api)
+
+- **Onchain**: Once a `Pending` transaction is included in a block, an Onchain webhook notification is sent.
+- **Rolledback**: If an `Onchain` transaction is dropped due to a rollback, a `Rollback` webhook notification is sent.
+- **Timeouts**: ***\[Coming Soon]*** A transaction that remains in the mempool beyond its time-to-live will be marked as timed out and rejected.
+
+***
+
+## Transaction State Machine[​](https://www.postman.com/go-maestro/maestro-api/documentation/v95q80t/cardano-transaction-manager-api)
+
+Transaction state transitions can best be understood with a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine) diagram.
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-MEwcklBsimDfiG8btzPWO-20241011-055804.png)
+</Frame>
+
+<Note>
+*Note: The state machine contains loops, meaning a transaction can transition through the same state multiple times before reaching an end state.*
+</Note>
+
+For example, a rolledback transaction may be included into another block, resulting in three webhook notifications:
+
+> **Onchain -> Rollback -> Onchain**
+
+***
+
+## Transaction Submission[​](https://www.postman.com/go-maestro/maestro-api/documentation/v95q80t/cardano-transaction-manager-api)
+
+All transactions submitted via Maestro's specialized endpoint are **recorded and tracked** by the Transaction Manager. Below are the possible response codes:
+
+| Response Code | Description        | State Transition                   |
+| :------------ | :----------------- | :--------------------------------- |
+| 200           | Valid submission   | Start --> Pending                  |
+| 400           | Invalid submission | Start --> Rejected                 |
+| 500           | Network failure    | Start --> Start (retry) --> Failed |
+
+***
+
+## Common Use Cases
+
+[Webhooks](https://en.wikipedia.org/wiki/Webhook) are ideal for tracking continuously changing states of data, such as blockchain transactions. Maestro’s transaction notification system provides an efficient way for applications to react to on-chain events, enhancing user experience—particularly for time-sensitive applications.
+
+<Note>
+Examples of **time-sensitive Web3 applications**
+
+- Submitting a trade on a DEX
+- Placing a bid for an NFT auction
+</Note>
+
+Transaction rollback notifications are essential for maintaining *data integrity* by providing a mechanism to revert in-app operations as soon as a rollback happens on-chain. For example, reverting an onchain DEX order after a block containing that transaction gets rolled back.
+
+***
+
+# Turbo Transactions
+
+The **Turbo Transaction** service is designed to **supercharge your transaction submission** process. It is a specialized system that employs various strategies to **get your transaction on-chain as fast as possible**. Whether the network is **under heavy load** or operating under normal conditions, Turbo Transactions ensures your transactions are added to the blockchain with utmost **reliability and speed**.
+
+<Warning>
+This service is only included in subscriptions above the **Artist** tier.
+</Warning>
+
+***
+
+# Service Availability
+
+The Turbo Transaction service is available on the following blockchains:
+
+# Benefits of a transaction propagation system
+
+1. Outcompete transactions trying to consume **highly sought-after UTxOs**, particularly within intensive DeFi applications.
+2. Enhance the **reliability of transaction submissions**, particularly during periods of high network load.
+3. Accelerate **transaction onchain confirmation and finality**, providing an edge in time-sensitive operations.
+
+<Frame>
+![](/images/AqtvK-hV9k5Q12E-Sfpa1-cfSYb2pvZ73xVLl5wvBYu-20241011-054912.gif)
+</Frame>
+
+***
+
+## Common Use Cases
+
+Use cases are vast, ranging from DeFi applications, where transaction speed can significantly impact financial outcomes, to gaming platforms, where swift transactions can enhance user experience dramatically. In essence, any application demanding fast, reliable transaction execution can substantially benefit from Turbo Transactions.

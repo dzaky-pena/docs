@@ -1,0 +1,51 @@
+---
+title: Blockchain Indexer
+---
+
+A blockchain indexer is a key piece of infrastructure required to power any Web3 ecosystem. It provides applications with access to a wide range of on-chain data through a flexible and optimized interface. One well-known example is [**The Graph**](https://thegraph.com/en/), a popular blockchain indexer on Ethereum, which simplifies data availability for Web3 applications.
+
+<Frame>
+![](/images/Gtwhlf9BeqPdAg4DmZ-pP-aeEWwEuLyMhuYfAydDNQC-20240919-172304.gif)
+</Frame>
+
+***
+
+# Service Availability
+
+The Blockchain Indexer service is available on the following blockchains:
+
+| Service                | Bitcoin                                                                 | Cardano                                                           | Dogecoin                                                           |
+| :--------------------- | :---------------------------------------------------------------------- | :---------------------------------------------------------------- | :----------------------------------------------------------------- |
+| **Blockchain Indexer** | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/3lhc5bu/bitcoin-blockchain-indexer-api) | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/oxvdcn1/cardano-blockchain-indexer-api) | [API Reference](https://www.postman.com/go-maestro/maestro-api/documentation/ekubjt3/dogecoin-blockchain-indexer-api) |
+
+***
+
+# Indexing Data
+
+## Real-Time Data
+
+Maestro’s blockchain indexer is specifically optimized for [**UTXO**](https://docs.cardano.org/learn/eutxo-explainer)** ledger primitives** and focuses on delivering both **real-time data liveness** and **data accuracy**. Blockchains operate as an **event-driven system** with probabilistic transaction finality, meaning the ledger’s "ground truth" isn't instantly finalized—it can take some time to reach global consensus.
+
+<Note>
+Learn More: What are chain [reorgs](https://learnmeabitcoin.com/technical/blockchain/chain-reorganisation/) or [rollbacks](https://plutus-apps.readthedocs.io/en/latest/plutus/explanations/rollback.html)?
+</Note>
+
+Accessing “real-time” onchain data requires rigorous data integrity checks. Traditional solutions, like adding a **block buffer** to indexers, only mitigate rollbacks by providing outdated data.
+
+Maestro has designed a system that handles rollbacks gracefully and in **real-time**, giving users live data without sacrificing data integrity. Let's take a closer look at the components that make up the indexer:
+
+1. **Indexer** - Specialized pipelines that extract, match, and process on-chain information, including handling rollbacks.
+2. **Storage** - A data lake optimized for storing various types of data.
+3. **Access** - A REST API providing flexible and performant querying capabilities.
+
+***
+
+## Common Use Cases
+
+Accurate and live on-chain data is critical for delivering an optimal user experience in blockchain applications. Some common use cases  for blockchain indexers include:
+
+- **Smart contract-based dApps** – Time-sensitive DeFi apps like DEXs, NFT marketplaces, lending protocols, games, and metaverses.
+- **Wallets and Decentralized IDs (DIDs)** – Real-time UTxO states are crucial for Cardano wallets, cross-chain wallets, and DID systems.
+- **Blockchain explorers** – Analytics platform require reliable access to large sets of on-chain data.
+- **Bridges & Web2 integrations** – Blockchain bridges and integrations with traditional Web2 software require access to on-chain information.
+
