@@ -104,287 +104,52 @@
           "bitcoin/api-usage",
           {
             "group": "Blockchain Indexer API",
-            "pages": [
-              "bitcoin/blockchain-indexer-api/overview",
-              {
-                "group": "Addresses",
-                "pages": [
-                  "bitcoin/blockchain-indexer-api/addresses/satoshi-activity-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/satoshi-balance-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/historical-satoshi-balance-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/brc20-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/brc20-transfer-inscriptions-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/inscriptions-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/inscription-activity-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/runes-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/rune-activity-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/rune-utxos-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/deprecated-rune-utxos-by-address-and-rune",
-                  "bitcoin/blockchain-indexer-api/addresses/address-statistics",
-                  "bitcoin/blockchain-indexer-api/addresses/transactions-by-address",
-                  "bitcoin/blockchain-indexer-api/addresses/utxos-by-address"
-                ]
-              },
-              {
-                "group": "BRC20",
-                "pages": [
-                  "bitcoin/blockchain-indexer-api/brc20/list-brc20",
-                  "bitcoin/blockchain-indexer-api/brc20/brc20-info",
-                  "bitcoin/blockchain-indexer-api/brc20/brc20-holders"
-                ]
-              },
-              {
-                "group": "Inscriptions",
-                "pages": [
-                  "bitcoin/blockchain-indexer-api/inscriptions/inscription-ids-by-collection-symbol",
-                  "bitcoin/blockchain-indexer-api/inscriptions/collection-metadata-by-collection-symbol",
-                  "bitcoin/blockchain-indexer-api/inscriptions/collection-stats-by-collection-symbol",
-                  "bitcoin/blockchain-indexer-api/inscriptions/inscription-info",
-                  "bitcoin/blockchain-indexer-api/inscriptions/activity-by-inscription",
-                  "bitcoin/blockchain-indexer-api/inscriptions/collection-metadata-by-inscription",
-                  "bitcoin/blockchain-indexer-api/inscriptions/content-by-inscription-id",
-                  "bitcoin/blockchain-indexer-api/inscriptions/token-metadata-by-inscription"
-                ]
-              },
-              {
-                "group": "Runes",
-                "pages": [
-                  "bitcoin/blockchain-indexer-api/runes/list-runes",
-                  "bitcoin/blockchain-indexer-api/runes/runes-info",
-                  "bitcoin/blockchain-indexer-api/runes/activity-by-rune",
-                  "bitcoin/blockchain-indexer-api/runes/holders-by-rune",
-                  "bitcoin/blockchain-indexer-api/runes/utxos-by-runes"
-                ]
-              },
-              {
-                "group": "Blocks",
-                "pages": [
-                  "bitcoin/blockchain-indexer-api/blocks/block-info",
-                  "bitcoin/blockchain-indexer-api/blocks/inscription-activity-by-block",
-                  "bitcoin/blockchain-indexer-api/blocks/transactions-by-block"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "bitcoin/blockchain-indexer-api/transactions/transaction-info",
-                  "bitcoin/blockchain-indexer-api/transactions/inscription-activity-by-transaction",
-                  "bitcoin/blockchain-indexer-api/transactions/transaction-info-with-metaprotocols",
-                  "bitcoin/blockchain-indexer-api/transactions/transaction-output-info"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/blockchain-indexer-api/openapi.json",
+              "directory": "bitcoin/blockchain-indexer-api"
+            }
           },
           {
             "group": "Esplora API",
-            "pages": [
-              "bitcoin/esplora-api/overview",
-              {
-                "group": "Addresses",
-                "pages": [
-                  "bitcoin/esplora-api/addresses/address",
-                  "bitcoin/esplora-api/addresses/address-transactions",
-                  "bitcoin/esplora-api/addresses/address-transactions-chain",
-                  "bitcoin/esplora-api/addresses/address-transactions-mempool",
-                  "bitcoin/esplora-api/addresses/address-utxos"
-                ]
-              },
-              {
-                "group": "Blocks",
-                "pages": [
-                  "bitcoin/esplora-api/blocks/block",
-                  "bitcoin/esplora-api/blocks/block-header",
-                  "bitcoin/esplora-api/blocks/block-status",
-                  "bitcoin/esplora-api/blocks/get-block-transactions",
-                  "bitcoin/esplora-api/blocks/block-transaction-ids",
-                  "bitcoin/esplora-api/blocks/block-transaction-id",
-                  "bitcoin/esplora-api/blocks/block-raw",
-                  "bitcoin/esplora-api/blocks/blocks",
-                  "bitcoin/esplora-api/blocks/block-height",
-                  "bitcoin/esplora-api/blocks/block-tip-height",
-                  "bitcoin/esplora-api/blocks/block-tip-hash"
-                ]
-              },
-              {
-                "group": "Mempool",
-                "pages": [
-                  "bitcoin/esplora-api/mempool/mempool",
-                  "bitcoin/esplora-api/mempool/mempool-transaction-ids",
-                  "bitcoin/esplora-api/mempool/mempool-recent"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "bitcoin/esplora-api/transactions/transaction",
-                  "bitcoin/esplora-api/transactions/transaction-hex",
-                  "bitcoin/esplora-api/transactions/transaction-merkleblock-proof",
-                  "bitcoin/esplora-api/transactions/transaction-merkle-proof",
-                  "bitcoin/esplora-api/transactions/transaction-outspend",
-                  "bitcoin/esplora-api/transactions/transaction-outspends",
-                  "bitcoin/esplora-api/transactions/transaction-raw",
-                  "bitcoin/esplora-api/transactions/transaction-rbf-timeline",
-                  "bitcoin/esplora-api/transactions/transaction-status",
-                  "bitcoin/esplora-api/transactions/transaction-1"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/esplora-api/openapi.json",
+              "directory": "bitcoin/esplora-api"
+            }
           },
           {
             "group": "Node RPC API",
-            "pages": [
-              "bitcoin/node-rpc-api/overview",
-              {
-                "group": "Blocks",
-                "pages": [
-                  "bitcoin/node-rpc-api/blocks/latest-block",
-                  "bitcoin/node-rpc-api/blocks/block-range-info",
-                  "bitcoin/node-rpc-api/blocks/recent-block-info",
-                  "bitcoin/node-rpc-api/blocks/recent-block-info-count",
-                  "bitcoin/node-rpc-api/blocks/block-info",
-                  "bitcoin/node-rpc-api/blocks/block-miner-info",
-                  "bitcoin/node-rpc-api/blocks/block-volume"
-                ]
-              },
-              {
-                "group": "General",
-                "pages": [
-                  "bitcoin/node-rpc-api/general/blockchain-info"
-                ]
-              },
-              {
-                "group": "Mempool",
-                "pages": [
-                  "bitcoin/node-rpc-api/mempool/mempool-info",
-                  "bitcoin/node-rpc-api/mempool/mempool-transactions",
-                  "bitcoin/node-rpc-api/mempool/mempool-transaction-info",
-                  "bitcoin/node-rpc-api/mempool/mempool-transaction-ancestors",
-                  "bitcoin/node-rpc-api/mempool/mempool-transaction-descendants"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "bitcoin/node-rpc-api/transactions/transaction-info-batch",
-                  "bitcoin/node-rpc-api/transactions/decode-transaction",
-                  "bitcoin/node-rpc-api/transactions/estimate-fee",
-                  "bitcoin/node-rpc-api/transactions/transaction-info-hex",
-                  "bitcoin/node-rpc-api/transactions/decode-psbt",
-                  "bitcoin/node-rpc-api/transactions/recent-transactions",
-                  "bitcoin/node-rpc-api/transactions/recent-transactions-count",
-                  "bitcoin/node-rpc-api/transactions/send-transaction",
-                  "bitcoin/node-rpc-api/transactions/transaction-info"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/node-rpc-api/openapi.json",
+              "directory": "bitcoin/node-rpc-api"
+            }
           },
           {
             "group": "Mempool Monitoring API",
-            "pages": [
-              "bitcoin/mempool-monitoring-api/overview",
-              {
-                "group": "Addresses",
-                "pages": [
-                  "bitcoin/mempool-monitoring-api/addresses/satoshi-balance-by-address-mempool-aware",
-                  "bitcoin/mempool-monitoring-api/addresses/runes-by-address-mempool-aware",
-                  "bitcoin/mempool-monitoring-api/addresses/rune-utxos-by-address-mempool-aware",
-                  "bitcoin/mempool-monitoring-api/addresses/utxos-by-address-mempool-aware"
-                ]
-              },
-              {
-                "group": "Runes",
-                "pages": [
-                  "bitcoin/mempool-monitoring-api/runes/holders-by-rune-mempool-aware"
-                ]
-              },
-              {
-                "group": "General",
-                "pages": [
-                  "bitcoin/mempool-monitoring-api/general/mempool-block-fee-rates"
-                ]
-              },
-              {
-                "group": "Transactions",
-                "pages": [
-                  "bitcoin/mempool-monitoring-api/transactions/transaction-info-with-metaprotocols-mempool-aware",
-                  "bitcoin/mempool-monitoring-api/transactions/transaction-output-info-mempool-aware"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/mempool-monitoring-api/openapi.json",
+              "directory": "bitcoin/mempool-monitoring-api"
+            }
           },
           {
             "group": "Event Manager API",
-            "pages": [
-              "bitcoin/event-manager-api/overview",
-              {
-                "group": "Logs",
-                "pages": [
-                  "bitcoin/event-manager-api/logs/user-event-logs",
-                  "bitcoin/event-manager-api/logs/event-log-info-by-id"
-                ]
-              },
-              {
-                "group": "Managers",
-                "pages": [
-                  "bitcoin/event-manager-api/managers/user-event-managers",
-                  "bitcoin/event-manager-api/managers/create-event-manager",
-                  "bitcoin/event-manager-api/managers/event-manager-info-by-id",
-                  "bitcoin/event-manager-api/managers/update-event-manager",
-                  "bitcoin/event-manager-api/managers/delete-event-manager"
-                ]
-              },
-              {
-                "group": "Triggers",
-                "pages": [
-                  "bitcoin/event-manager-api/triggers/user-event-manager-triggers",
-                  "bitcoin/event-manager-api/triggers/create-event-manager-trigger",
-                  "bitcoin/event-manager-api/triggers/event-trigger-info-by-id",
-                  "bitcoin/event-manager-api/triggers/update-event-manager-trigger",
-                  "bitcoin/event-manager-api/triggers/delete-event-manager-trigger"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/event-manager-api/openapi.json",
+              "directory": "bitcoin/event-manager-api"
+            }
           },
           {
             "group": "Market Price API",
-            "pages": [
-              "bitcoin/market-price-api/overview",
-              {
-                "group": "Prices",
-                "pages": [
-                  "bitcoin/market-price-api/prices/btc-prices-by-timestamp",
-                  "bitcoin/market-price-api/prices/rune-prices-by-timestamp",
-                  "bitcoin/market-price-api/prices/rune-price-by-timestamp",
-                  "bitcoin/market-price-api/prices/btc-price-by-timestamp"
-                ]
-              },
-              {
-                "group": "DEX",
-                "pages": [
-                  "bitcoin/market-price-api/dex/supported-dexs",
-                  "bitcoin/market-price-api/dex/rune-ohlc-data",
-                  "bitcoin/market-price-api/dex/rune-trades-for-dex",
-                  "bitcoin/market-price-api/dex/rune-registry"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/market-price-api/openapi.json",
+              "directory": "bitcoin/market-price-api"
+            }
           },
           {
             "group": "Wallet API",
-            "pages": [
-              "bitcoin/wallet-api/overview",
-              {
-                "group": "Addresses",
-                "pages": [
-                  "bitcoin/wallet-api/addresses/wallet-satoshi-activity-by-address-mempool-aware",
-                  "bitcoin/wallet-api/addresses/metaprotocol-activity-by-address",
-                  "bitcoin/wallet-api/addresses/historical-satoshi-balance-by-address",
-                  "bitcoin/wallet-api/addresses/inscription-activity-by-address-mempool-aware",
-                  "bitcoin/wallet-api/addresses/rune-activity-by-address-mempool-aware",
-                  "bitcoin/wallet-api/addresses/address-statistics-mempool-aware"
-                ]
-              }
-            ]
+            "openapi": {
+              "source": "bitcoin/wallet-api/openapi.json",
+              "directory": "bitcoin/wallet-api"
+            }
           },
           {
             "group": " ",
